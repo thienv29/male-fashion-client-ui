@@ -49,8 +49,6 @@ export default function Header() {
                                     <ul className='dropdown'>
                                         <li className='active'><a href='/about'>About Us</a></li>
                                         <li><a href='/contact'>Contact</a></li>
-                                        <li><a href='/cart'>Shopping Cart</a></li>
-                                        <li><a href='/check-out'>Check Out</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -60,7 +58,7 @@ export default function Header() {
                         <div className='header__nav__option'>
                             <a href='#' className='search-switch'><img src='img/icon/search.png' alt='' /></a>
                             <a href='#'><img src='img/icon/heart.png' alt='' /></a>
-                            <a href='check-out'><img src='img/icon/cart.png' alt='' /> <span>0</span></a>
+                            <a href='/cart'><img src='img/icon/cart.png' alt='' /> <span>0</span></a>
                             <div className='price'>$0.00</div>
                         </div>
                     </div>

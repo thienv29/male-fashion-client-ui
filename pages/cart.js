@@ -144,7 +144,7 @@ export default function Home() {
                                     <li>Subtotal <span>$ 169.50</span></li>
                                     <li>Total <span>$ 169.50</span></li>
                                 </ul>
-                                <a href='#' className='primary-btn'>Proceed to checkout</a>
+                                <a href='/check-out' className='primary-btn'>Proceed to checkout</a>
                             </div>
                         </div>
                     </div>
