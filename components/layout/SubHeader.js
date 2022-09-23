@@ -4,10 +4,6 @@ export default function SubHeader() {
             <div className='offcanvas-menu-overlay'/>
             <div className='offcanvas-menu-wrapper'>
                 <div className='offcanvas__option'>
-                    <div className='offcanvas__links'>
-                        <a href='#'>Sign in</a>
-                        <a href='#'>FAQs</a>
-                    </div>
                     <div className='offcanvas__top__hover'>
                         <span>Usd <i className='arrow_carrot-down'/></span>
                         <ul>
