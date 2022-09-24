@@ -38,7 +38,7 @@ export default function Shop() {
                                                     <a data-toggle='collapse' data-target='#collapseOne'>Categories</a>
                                                 </div>
                                                 <div id='collapseOne' className='collapse show'
-                                                     data-parent='#accordionExample'>
+                                                    data-parent='#accordionExample'>
                                                     <div className='card-body'>
                                                         <div className='shop__sidebar__categories'>
                                                             <ul className='nice-scroll'>
@@ -61,7 +61,7 @@ export default function Shop() {
                                                     <a data-toggle='collapse' data-target='#collapseTwo'>Branding</a>
                                                 </div>
                                                 <div id='collapseTwo' className='collapse show'
-                                                     data-parent='#accordionExample'>
+                                                    data-parent='#accordionExample'>
                                                     <div className='card-body'>
                                                         <div className='shop__sidebar__brand'>
                                                             <ul>
@@ -80,7 +80,7 @@ export default function Shop() {
                                                         Price</a>
                                                 </div>
                                                 <div id='collapseThree' className='collapse show'
-                                                     data-parent='#accordionExample'>
+                                                    data-parent='#accordionExample'>
                                                     <div className='card-body'>
                                                         <div className='shop__sidebar__price'>
                                                             <ul>
@@ -100,7 +100,7 @@ export default function Shop() {
                                                     <a data-toggle='collapse' data-target='#collapseFour'>Size</a>
                                                 </div>
                                                 <div id='collapseFour' className='collapse show'
-                                                     data-parent='#accordionExample'>
+                                                    data-parent='#accordionExample'>
                                                     <div className='card-body'>
                                                         <div className='shop__sidebar__size'>
                                                             <label htmlFor='xs'>xs
@@ -136,7 +136,7 @@ export default function Shop() {
                                                     <a data-toggle='collapse' data-target='#collapseFive'>Colors</a>
                                                 </div>
                                                 <div id='collapseFive' className='collapse show'
-                                                     data-parent='#accordionExample'>
+                                                    data-parent='#accordionExample'>
                                                     <div className='card-body'>
                                                         <div className='shop__sidebar__color'>
                                                             <label className='c-1' htmlFor='sp-1'>
@@ -175,7 +175,7 @@ export default function Shop() {
                                                     <a data-toggle='collapse' data-target='#collapseSix'>Tags</a>
                                                 </div>
                                                 <div id='collapseSix' className='collapse show'
-                                                     data-parent='#accordionExample'>
+                                                    data-parent='#accordionExample'>
                                                     <div className='card-body'>
                                                         <div className='shop__sidebar__tags'>
                                                             <a href='#'>Product</a>
@@ -217,7 +217,7 @@ export default function Shop() {
                                     <div className='col-lg-4 col-md-6 col-sm-6'>
                                         <div className='product__item'>
                                             <div className='product__item__pic set-bg'
-                                                 data-setbg='img/product/product-2.jpg'>
+                                                data-setbg='img/product/product-2.jpg'>
                                                 <ul className='product__hover'>
                                                     <li><a href='#'><img src='img/icon/heart.png' alt='' /></a></li>
                                                     <li><a href='#'><img src='img/icon/compare.png' alt='' />
@@ -254,7 +254,7 @@ export default function Shop() {
                                     <div className='col-lg-4 col-md-6 col-sm-6'>
                                         <div className='product__item sale'>
                                             <div className='product__item__pic set-bg'
-                                                 data-setbg='img/product/product-3.jpg'>
+                                                data-setbg='img/product/product-3.jpg'>
                                                 <span className='label'>Sale</span>
                                                 <ul className='product__hover'>
                                                     <li><a href='#'><img src='img/icon/heart.png' alt='' /></a></li>
@@ -292,7 +292,7 @@ export default function Shop() {
                                     <div className='col-lg-4 col-md-6 col-sm-6'>
                                         <div className='product__item'>
                                             <div className='product__item__pic set-bg'
-                                                 data-setbg='img/product/product-4.jpg'>
+                                                data-setbg='img/product/product-4.jpg'>
                                                 <ul className='product__hover'>
                                                     <li><a href='#'><img src='img/icon/heart.png' alt='' /></a></li>
                                                     <li><a href='#'><img src='img/icon/compare.png' alt='' />
@@ -329,7 +329,7 @@ export default function Shop() {
                                     <div className='col-lg-4 col-md-6 col-sm-6'>
                                         <div className='product__item sale'>
                                             <div className='product__item__pic set-bg'
-                                                 data-setbg='img/product/product-6.jpg'>
+                                                data-setbg='img/product/product-6.jpg'>
                                                 <span className='label'>Sale</span>
                                                 <ul className='product__hover'>
                                                     <li><a href='#'><img src='img/icon/heart.png' alt='' /></a></li>
@@ -367,7 +367,7 @@ export default function Shop() {
                                     <div className='col-lg-4 col-md-6 col-sm-6'>
                                         <div className='product__item'>
                                             <div className='product__item__pic set-bg'
-                                                 data-setbg='img/product/product-7.jpg'>
+                                                data-setbg='img/product/product-7.jpg'>
                                                 <ul className='product__hover'>
                                                     <li><a href='#'><img src='img/icon/heart.png' alt='' /></a></li>
                                                     <li><a href='#'><img src='img/icon/compare.png' alt='' />
@@ -404,7 +404,7 @@ export default function Shop() {
                                     <div className='col-lg-4 col-md-6 col-sm-6'>
                                         <div className='product__item'>
                                             <div className='product__item__pic set-bg'
-                                                 data-setbg='img/product/product-8.jpg'>
+                                                data-setbg='img/product/product-8.jpg'>
                                                 <ul className='product__hover'>
                                                     <li><a href='#'><img src='img/icon/heart.png' alt='' /></a></li>
                                                     <li><a href='#'><img src='img/icon/compare.png' alt='' />
@@ -441,7 +441,7 @@ export default function Shop() {
                                     <div className='col-lg-4 col-md-6 col-sm-6'>
                                         <div className='product__item'>
                                             <div className='product__item__pic set-bg'
-                                                 data-setbg='img/product/product-9.jpg'>
+                                                data-setbg='img/product/product-9.jpg'>
                                                 <ul className='product__hover'>
                                                     <li><a href='#'><img src='img/icon/heart.png' alt='' /></a></li>
                                                     <li><a href='#'><img src='img/icon/compare.png' alt='' />
@@ -478,7 +478,7 @@ export default function Shop() {
                                     <div className='col-lg-4 col-md-6 col-sm-6'>
                                         <div className='product__item sale'>
                                             <div className='product__item__pic set-bg'
-                                                 data-setbg='img/product/product-10.jpg'>
+                                                data-setbg='img/product/product-10.jpg'>
                                                 <span className='label'>Sale</span>
                                                 <ul className='product__hover'>
                                                     <li><a href='#'><img src='img/icon/heart.png' alt='' /></a></li>
@@ -516,7 +516,7 @@ export default function Shop() {
                                     <div className='col-lg-4 col-md-6 col-sm-6'>
                                         <div className='product__item'>
                                             <div className='product__item__pic set-bg'
-                                                 data-setbg='img/product/product-11.jpg'>
+                                                data-setbg='img/product/product-11.jpg'>
                                                 <ul className='product__hover'>
                                                     <li><a href='#'><img src='img/icon/heart.png' alt='' /></a></li>
                                                     <li><a href='#'><img src='img/icon/compare.png' alt='' />
@@ -553,7 +553,7 @@ export default function Shop() {
                                     <div className='col-lg-4 col-md-6 col-sm-6'>
                                         <div className='product__item sale'>
                                             <div className='product__item__pic set-bg'
-                                                 data-setbg='img/product/product-12.jpg'>
+                                                data-setbg='img/product/product-12.jpg'>
                                                 <span className='label'>Sale</span>
                                                 <ul className='product__hover'>
                                                     <li><a href='#'><img src='img/icon/heart.png' alt='' /></a></li>
@@ -591,7 +591,7 @@ export default function Shop() {
                                     <div className='col-lg-4 col-md-6 col-sm-6'>
                                         <div className='product__item'>
                                             <div className='product__item__pic set-bg'
-                                                 data-setbg='img/product/product-13.jpg'>
+                                                data-setbg='img/product/product-13.jpg'>
                                                 <ul className='product__hover'>
                                                     <li><a href='#'><img src='img/icon/heart.png' alt='' /></a></li>
                                                     <li><a href='#'><img src='img/icon/compare.png' alt='' />
@@ -628,7 +628,7 @@ export default function Shop() {
                                     <div className='col-lg-4 col-md-6 col-sm-6'>
                                         <div className='product__item'>
                                             <div className='product__item__pic set-bg'
-                                                 data-setbg='img/product/product-14.jpg'>
+                                                data-setbg='img/product/product-14.jpg'>
                                                 <ul className='product__hover'>
                                                     <li><a href='#'><img src='img/icon/heart.png' alt='' /></a></li>
                                                     <li><a href='#'><img src='img/icon/compare.png' alt='' />
@@ -681,4 +681,16 @@ export default function Shop() {
             </Layout>
         </>
     );
+}
+export async function getStaticProps() {
+    // Call an external API endpoint to get posts
+
+
+    // By returning { props: { posts } }, the Blog component
+    // will receive `posts` as a prop at build time
+    return {
+        props: {
+
+        },
+    }
 }
