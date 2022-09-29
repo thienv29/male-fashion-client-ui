@@ -57,7 +57,7 @@ export default function Header() {
                     <div className='col-lg-3 col-md-3'>
                         <div className='header__nav__option'>
                             <a href='#' className='search-switch'><img src='img/icon/search.png' alt='' /></a>
-                            <a href='#'><img src='img/icon/heart.png' alt='' /></a>
+                            <a href='/wishlist'><img src='img/icon/heart.png' alt='' /></a>
                             <a href='/cart'><img src='img/icon/cart.png' alt='' /> <span>0</span></a>
                             <div className='price'>$0.00</div>
                         </div>

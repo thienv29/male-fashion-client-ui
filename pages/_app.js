@@ -5,6 +5,7 @@ import '../styles/lib/elegant-icons.css'
 import '../styles/lib/magnific-popup.css'
 import '../styles/lib/nice-select.css'
 import '../styles/lib/owl.carousel.min.css'
+import '../styles/wishlish.css';
 import '../styles/lib/slicknav.min.css'
 import { useState, useEffect } from 'react'
 function MyApp({ Component, pageProps }) {
