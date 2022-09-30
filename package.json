@@ -4,15 +4,23 @@
   "private": true,
   "scripts": {
     "dev": "env-cmd -f ./enviroments/.env.dev next dev",
+    "prod": "env-cmd -f ./enviroments/.env.prod next dev",
     "build": "env-cmd -f ./enviroments/.env.prod next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.5",
+    "axios": "^0.27.2",
+    "env-cmd": "^10.1.0",
+    "jwt-decode": "^3.1.2",
     "next": "12.3.1",
+    "query-string": "^7.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "env-cmd": "^10.1.0"
+    "react-redux": "^8.0.4",
+    "redux-persist": "^6.0.0",
+    "react-hot-toast": "^2.4.0"
   },
   "devDependencies": {
     "eslint": "8.23.1",
