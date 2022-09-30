@@ -8,6 +8,10 @@ import '../styles/lib/owl.carousel.min.css'
 import '../styles/wishlish.css';
 import '../styles/lib/slicknav.min.css'
 import { useState, useEffect } from 'react'
+import { Provider } from 'react-redux';
+import { persistor, store } from '../store';
+import { PersistGate } from 'redux-persist/integration/react';
+
 function MyApp({ Component, pageProps }) {
   // return <Component {...pageProps} />
   const [showChild, setShowChild] = useState(false);
@@ -23,7 +27,11 @@ function MyApp({ Component, pageProps }) {
     return <></>;
   } else {
     return (
-      <Component {...pageProps} />
+      <Provider store={store}>
+        <PersistGate persistor={persistor} loading={null}>
+          <Component {...pageProps} />
+        </PersistGate>
+      </Provider >
     );
   }
 }

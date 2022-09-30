@@ -4,8 +4,12 @@ import Header from './Header';
 import Footer from './Footer';
 import Search from './Search';
 import Script from 'next/script';
+import { Toaster } from 'react-hot-toast';
+import { useSelector } from 'react-redux';
+
 
 export default function Layout({ children }) {
+    const appUi = useSelector(state => state.appUI);
     return (
         <div>
             <Head>
@@ -15,7 +19,7 @@ export default function Layout({ children }) {
                 <meta name='viewport' content='width=device-width, initial-scale=1.0' />
                 <meta httpEquiv='X-UA-Compatible' content='ie=edge' />
                 <link href="/img/logo1.png" rel="icon" />
-                <title>Male-Fashion</title>
+                <title>{appUi.title}</title>
 
                 <link
                     href='https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap'
@@ -36,6 +40,8 @@ export default function Layout({ children }) {
                 <Script src='js/main.js' strategy='lazyOnload' /></main>
             <Footer />
             <Search />
+            <Toaster containerClassName={'toast'} />
+
 
 
 

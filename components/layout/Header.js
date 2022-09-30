@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router';
 
 export default function Header() {
-    const router = useRouter();
-    console.log(router);
     return (
         <header className='header'>
             <div className='header__top'>
@@ -24,7 +22,6 @@ export default function Header() {
                                     <ul>
                                         <li>USD</li>
                                         <li>EUR</li>
-                                        <li>USD</li>
                                     </ul>
                                 </div>
                             </div>
