@@ -6,6 +6,7 @@ import '../styles/lib/magnific-popup.css'
 import '../styles/lib/nice-select.css'
 import '../styles/lib/owl.carousel.min.css'
 import '../styles/wishlish.css';
+import '../styles/productdetail.css';
 import '../styles/lib/slicknav.min.css'
 import { useState, useEffect } from 'react'
 import { Provider } from 'react-redux';
