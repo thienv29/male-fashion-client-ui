@@ -442,17 +442,17 @@ export default function Home() {
                             <div className='col-lg-8'>
                                 <div className='instagram__pic'>
                                     <div className='instagram__pic__item set-bg'
-                                         data-setbg='img/instagram/instagram-1.jpg' />
+                                        data-setbg='img/instagram/instagram-1.jpg' />
                                     <div className='instagram__pic__item set-bg'
-                                         data-setbg='img/instagram/instagram-2.jpg' />
+                                        data-setbg='img/instagram/instagram-2.jpg' />
                                     <div className='instagram__pic__item set-bg'
-                                         data-setbg='img/instagram/instagram-3.jpg' />
+                                        data-setbg='img/instagram/instagram-3.jpg' />
                                     <div className='instagram__pic__item set-bg'
-                                         data-setbg='img/instagram/instagram-4.jpg' />
+                                        data-setbg='img/instagram/instagram-4.jpg' />
                                     <div className='instagram__pic__item set-bg'
-                                         data-setbg='img/instagram/instagram-5.jpg' />
+                                        data-setbg='img/instagram/instagram-5.jpg' />
                                     <div className='instagram__pic__item set-bg'
-                                         data-setbg='img/instagram/instagram-6.jpg' />
+                                        data-setbg='img/instagram/instagram-6.jpg' />
                                 </div>
                             </div>
                             <div className='col-lg-4'>
@@ -517,13 +517,13 @@ export default function Home() {
 }
 export async function getStaticProps() {
     // Call an external API endpoint to get posts
-    
-  
+
+
     // By returning { props: { posts } }, the Blog component
     // will receive `posts` as a prop at build time
     return {
-      props: {
-        
-      },
+        props: {
+
+        },
     }
-  }
+}

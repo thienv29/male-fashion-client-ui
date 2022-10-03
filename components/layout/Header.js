@@ -1,9 +1,26 @@
 import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react'
 
 export default function Header() {
+    // const [position, setPosition] = useState(window.pageYOffset)
+    const [visibles, setVisibles] = useState(false);
+    useEffect(() => {
+        console.log('render');
+        const handleScroll = () => {
+            let moving = window.pageYOffset
+            console.log('moving', moving > 0)
+            // console.log('position', position)
+            setVisibles(moving >= 5);
+            // setPosition(moving)
+        };
+        window.addEventListener("scroll", handleScroll);
+        return (() => {
+            window.removeEventListener("scroll", handleScroll);
+        })
+    }, [visibles])
     return (
         <header className='header'>
-            <div className='header__top'>
+            <div className='header__top' style={visibles ? { height: 0, padding: '0px' }:  { height: 'unset', padding: '10px 0' }}>
                 <div className='container'>
                     <div className='row'>
                         <div className='col-lg-6 col-md-7'>
