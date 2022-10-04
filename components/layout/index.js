@@ -6,10 +6,30 @@ import Search from './Search';
 import Script from 'next/script';
 import { Toaster } from 'react-hot-toast';
 import { useSelector } from 'react-redux';
+import { useState, useEffect } from 'react'
 
 
 export default function Layout({ children }) {
     const appUi = useSelector(state => state.appUI);
+
+    function ScrollHideHeader({vsb}) {
+        const [position, setPosition] = useState(window.pageYOffset)
+        const [visible, setVisible] = useState(true) 
+        useEffect(()=> {
+            const handleScroll = () => {
+               let moving = window.pageYOffset
+               
+               setVisible(position > moving);
+               setPosition(moving)
+            };
+            window.addEventListener("scroll", handleScroll);
+            return(() => {
+               window.removeEventListener("scroll", handleScroll);
+            })
+        })
+        vsb = visible ? "visible" : "hidden";
+    }
+
     return (
         <div>
             <Head>
@@ -28,7 +48,7 @@ export default function Layout({ children }) {
                 {/* eslint-disable-next-line @next/next/no-sync-scripts */}
                 <script src='js/jquery-3.3.1.min.js' />
             </Head>
-            <SubHeader />
+            <SubHeader containerClassName={vsb}/>
             <Header />
             <main>{children}
                 <Script src='js/jquery.nice-select.min.js' strategy='lazyOnload' />
