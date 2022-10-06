@@ -256,14 +256,14 @@ ol {
     z-index: 999;
 }
 
-.spacial-controls .search-switch {
+/* .spacial-controls .search-switch {
     display: block;
     height: 100%;
     padding-top: 30px;
     background: #323232;
     text-align: center;
     cursor: pointer;
-}
+} */
 
 .search-model {
     display: none;
@@ -2120,7 +2120,7 @@ ol {
 -----------------------*/
 
 .about {
-    padding-bottom: 70px;
+    padding: 245px 0 70px 0;
 }
 
 .about__pic {
