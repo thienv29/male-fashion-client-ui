@@ -33,6 +33,38 @@ export default function Shop() {
                                     </div>
                                     <div className='shop__sidebar__accordion'>
                                         <div className='accordion' id='accordionExample'>
+                                        <div className='card'>
+                                                <div className='card-heading'>
+                                                    <a data-toggle='collapse' data-target='#collapseThree'>Filter
+                                                        Price</a>
+                                                </div>
+                                                <div id='collapseThree' className='collapse show'
+                                                    data-parent='#accordionExample'>
+                                                    <div className='card-body'>
+                                                        <div class="container mt-4">
+                                                            <div class="row">
+                                                                <div class="col-sm-12">
+                                                                    <div id="slider-range"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row slider-labels">
+                                                                <div class="col-xs-6 caption" id="slider-range-value1">
+                                                                </div>
+                                                                <div class="col-xs-6 price-text-right caption" id="slider-range-value2">
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-12">
+                                                                    <form>
+                                                                        <input type="hidden" name="min-value" value="$0"></input>
+                                                                        <input type="hidden" name="max-value" value=""></input>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div className='card'>
                                                 <div className='card-heading'>
                                                     <a data-toggle='collapse' data-target='#collapseOne'>Categories</a>
@@ -73,28 +105,7 @@ export default function Shop() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div className='card'>
-                                                <div className='card-heading'>
-                                                    <a data-toggle='collapse' data-target='#collapseThree'>Filter
-                                                        Price</a>
-                                                </div>
-                                                <div id='collapseThree' className='collapse show'
-                                                    data-parent='#accordionExample'>
-                                                    <div className='card-body'>
-                                                        <div className='shop__sidebar__price'>
-                                                            <ul>
-                                                                <li><a href='#'>$0.00 - $50.00</a></li>
-                                                                <li><a href='#'>$50.00 - $100.00</a></li>
-                                                                <li><a href='#'>$100.00 - $150.00</a></li>
-                                                                <li><a href='#'>$150.00 - $200.00</a></li>
-                                                                <li><a href='#'>$200.00 - $250.00</a></li>
-                                                                <li><a href='#'>250.00+</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            </div>                                          
                                             <div className='card'>
                                                 <div className='card-heading'>
                                                     <a data-toggle='collapse' data-target='#collapseFour'>Size</a>
@@ -169,26 +180,7 @@ export default function Shop() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div className='card'>
-                                                <div className='card-heading'>
-                                                    <a data-toggle='collapse' data-target='#collapseSix'>Tags</a>
-                                                </div>
-                                                <div id='collapseSix' className='collapse show'
-                                                    data-parent='#accordionExample'>
-                                                    <div className='card-body'>
-                                                        <div className='shop__sidebar__tags'>
-                                                            <a href='#'>Product</a>
-                                                            <a href='#'>Bags</a>
-                                                            <a href='#'>Shoes</a>
-                                                            <a href='#'>Fashio</a>
-                                                            <a href='#'>Clothing</a>
-                                                            <a href='#'>Hats</a>
-                                                            <a href='#'>Accessories</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            </div>                                       
                                         </div>
                                     </div>
                                 </div>
