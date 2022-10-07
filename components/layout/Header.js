@@ -53,8 +53,20 @@ export default function Header() {
                         </nav>
                     </div>
                     <div className='col-lg-3 col-md-3'>
-                        <div className='header__nav__option'>
-                            <a href='#' className='search-switch'><img src='img/icon/search.png' alt='' /></a>
+                        <div className='header__nav__option'>                        
+                            <label for="search-input" href='#' className='search-switch'><img src='img/icon/search.png' alt='' /></label>
+                            <input type="checkbox" hidden name="" class="search__input" id="search-input"></input>
+                            <label for="search-input" class="side__overlay">
+
+                            </label>
+                            <nav className='sidebar-option'>
+                                <form>
+                                    <div className='input__group'>
+                                        <input type="text" className='form__input'></input>
+                                        <div><i class="fa fa-search" aria-hidden="true"></i></div>
+                                    </div>
+                                </form>
+                            </nav>
                             <a href='/wishlist'><img src='img/icon/heart.png' alt='' /></a>
                             <a href='/cart'><img src='img/icon/cart.png' alt='' /> <span>0</span></a>
                             <div className='price'>$0.00</div>
