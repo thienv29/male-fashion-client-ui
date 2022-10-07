@@ -37,7 +37,9 @@ export default function Layout({ children }) {
                 <Script src='js/jquery.magnific-popup.min.js' strategy='lazyOnload' />
                 <Script src='js/jquery.countdown.min.js' strategy='lazyOnload' />
                 <Script src='js/jquery.slicknav.js' strategy='lazyOnload' />
-                <Script src='js/main.js' strategy='lazyOnload' /></main>
+                <Script src='js/main.js' strategy='lazyOnload' />
+                <Script src='js/price-filter.js' strategy='lazyOnload' />
+                </main>
             <Footer />
             <Search />
             <Toaster containerClassName={'toast'} />
