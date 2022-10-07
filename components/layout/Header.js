@@ -1,9 +1,26 @@
 import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react'
 
 export default function Header() {
+    // const [position, setPosition] = useState(window.pageYOffset)
+    const [visibles, setVisibles] = useState(false);
+    useEffect(() => {
+        console.log('render');
+        const handleScroll = () => {
+            let moving = window.pageYOffset
+            console.log('moving', moving > 0)
+            // console.log('position', position)
+            setVisibles(moving >= 5);
+            // setPosition(moving)
+        };
+        window.addEventListener("scroll", handleScroll);
+        return (() => {
+            window.removeEventListener("scroll", handleScroll);
+        })
+    }, [visibles])
     return (
         <header className='header'>
-            <div className='header__top'>
+            <div className='header__top' style={visibles ? { height: 0, padding: '0px' } : { height: 'unset', padding: '10px 0' }}>
                 <div className='container'>
                     <div className='row'>
                         <div className='col-lg-6 col-md-7'>
@@ -14,8 +31,7 @@ export default function Header() {
                         <div className='col-lg-6 col-md-5'>
                             <div className='header__top__right'>
                                 <div className='header__top__links'>
-                                    <a href='/product-detail'>Sign in</a>
-                                    <a href='sign-in'>Sign in</a>
+                                    <a href='#'>Sign in</a>
                                     <a href='#'>FAQs</a>
                                 </div>
                                 <div className='header__top__hover'>
@@ -53,7 +69,7 @@ export default function Header() {
                         </nav>
                     </div>
                     <div className='col-lg-3 col-md-3'>
-                        <div className='header__nav__option'>                        
+                        <div className='header__nav__option'>
                             <label for="search-input" href='#' className='search-switch'><img src='img/icon/search.png' alt='' /></label>
                             <input type="checkbox" hidden name="" class="search__input" id="search-input"></input>
                             <label for="search-input" class="side__overlay">
@@ -67,7 +83,8 @@ export default function Header() {
                                     </div>
                                 </form>
                             </nav>
-                             <a href='/wishlist'><img src='img/icon/heart.png' alt='' /></a>
+
+                            <a href='/wishlist'><img src='img/icon/heart.png' alt='' /></a>
                             <a href='/cart'><img src='img/icon/cart.png' alt='' /> <span>0</span></a>
                             <div className='price'>$0.00</div>
                         </div>
