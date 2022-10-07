@@ -25,7 +25,7 @@ export default function CheckOut() {
                         <form action="#">
                             <div className="row">
                                 <div className="col-lg-8 col-md-6">
-                                    <h6 className="coupon__code"><span className='icon_tag_alt'/> Have a
+                                    <h6 className="coupon__code"><span className='icon_tag_alt' /> Have a
                                         coupon? <a href="#">Click
                                             here</a> to enter your code</h6>
                                     <h6 className="checkout__title">Billing Details</h6>
@@ -83,7 +83,7 @@ export default function CheckOut() {
                                         <label htmlFor="acc">
                                             Create an account?
                                             <input type="checkbox" id="acc" />
-                                            <span className='checkmark'/>
+                                            <span className='checkmark' />
                                         </label>
                                         <p>Create an account by entering the information below. If you are a returning
                                             customer
@@ -97,7 +97,7 @@ export default function CheckOut() {
                                         <label htmlFor="diff-acc">
                                             Note about your order, e.g, special noe for delivery
                                             <input type="checkbox" id="diff-acc" />
-                                            <span className='checkmark'/>
+                                            <span className='checkmark' />
                                         </label>
                                     </div>
                                     <div className="checkout__input">
@@ -124,25 +124,20 @@ export default function CheckOut() {
                                             <label htmlFor="acc-or">
                                                 Create an account?
                                                 <input type="checkbox" id="acc-or" />
-                                                <span className='checkmark'/>
+                                                <span className='checkmark' />
                                             </label>
                                         </div>
                                         <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor
                                             incididunt
                                             ut labore et dolore magna aliqua.</p>
                                         <div className="checkout__input__checkbox">
-                                            <label htmlFor="payment">
-                                                Check Payment
-                                                <input type="checkbox" id="payment" />
-                                                <span className='checkmark'/>
-                                            </label>
-                                        </div>
-                                        <div className="checkout__input__checkbox">
-                                            <label htmlFor="paypal">
-                                                Paypal
-                                                <input type="checkbox" id="paypal" />
-                                                <span className='checkmark'/>
-                                            </label>
+                                            Select Payment Method:
+                                            <div class="input-group">
+                                                <select className='payment_method mt-2 mb-2'>
+                                                    <option selected>COD</option>
+                                                    <option value="1">Banking</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <button type="submit" className="site-btn">PLACE ORDER</button>
                                     </div>
@@ -157,13 +152,13 @@ export default function CheckOut() {
 }
 export async function getStaticProps() {
     // Call an external API endpoint to get posts
-    
-  
+
+
     // By returning { props: { posts } }, the Blog component
     // will receive `posts` as a prop at build time
     return {
-      props: {
-        
-      },
+        props: {
+
+        },
     }
-  }
+}
