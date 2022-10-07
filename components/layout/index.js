@@ -2,7 +2,6 @@ import Head from 'next/head';
 import SubHeader from './SubHeader';
 import Header from './Header';
 import Footer from './Footer';
-import Search from './Search';
 import Script from 'next/script';
 import { Toaster } from 'react-hot-toast';
 import { useSelector } from 'react-redux';
@@ -41,7 +40,6 @@ export default function Layout({ children }) {
                 <Script src='js/price-filter.js' strategy='lazyOnload' />
                 </main>
             <Footer />
-            <Search />
             <Toaster containerClassName={'toast'} />
 
 
