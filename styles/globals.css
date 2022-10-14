@@ -2059,7 +2059,7 @@ ol {
 
 .breadcrumb-option {
     background: #f3f2ee;
-    padding: 20px 0;
+    padding: 165px 0 20px 0;
 }
 
 .breadcrumb__text h4 {
@@ -2120,6 +2120,7 @@ ol {
 
 .about {
     padding-bottom: 70px;
+    padding-top: 200px;
 }
 
 .about__pic {
