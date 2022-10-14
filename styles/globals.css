@@ -362,6 +362,7 @@ ol {
 
 .header__top__hover:hover ul {
     top: 24px;
+    width: 100px;
     opacity: 1;
     visibility: visible;
 }
@@ -536,6 +537,7 @@ ol {
     font-weight: 700;
     display: inline-block;
     margin-left: -20px;
+    margin-right: 10px;
     position: relative;
     top: 3px;
 }
@@ -3624,6 +3626,7 @@ ol {
 
     .offcanvas__top__hover:hover ul {
         top: 24px;
+        width: 100px;
         opacity: 1;
         visibility: visible;
     }

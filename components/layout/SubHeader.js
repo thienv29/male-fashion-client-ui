@@ -7,9 +7,8 @@ export default function SubHeader() {
                     <div className='offcanvas__top__hover'>
                         <span>Usd <i className='arrow_carrot-down'/></span>
                         <ul>
-                            <li>USD</li>
-                            <li>EUR</li>
-                            <li>USD</li>
+                            <li>Đăng nhập</li>
+                            <li>Đăng ký</li>
                         </ul>
                     </div>
                 </div>
