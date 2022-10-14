@@ -232,7 +232,7 @@ export default function Home() {
                             <div className='col-md-12 col-sm-12'>
                                 <a className='userprofile__save' href='#'>Lưu</a>    
                             </div>      
-                        </div>                     
+                        </div>
                     </div>
                 </div>
             </section>

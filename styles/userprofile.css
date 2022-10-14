@@ -176,8 +176,8 @@
 
 .userprofile__save {
     display: inline-block;
-    float: left;
     border: 1px solid #e1e1e1;
+    margin-top: 20px;
     color: #000;
     font-weight: 700;
     font-size: 14px;
