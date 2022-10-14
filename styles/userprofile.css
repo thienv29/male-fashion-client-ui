@@ -119,8 +119,10 @@
 
 .nice-select.open .list {
     height: 150px;
+    width: 100%;
     overflow-y: scroll;
 }
+
 
 .nice-select {
     width: 150px;
@@ -170,4 +172,16 @@
 
 .custom-file label:hover {
     background: rgba(0,0,0,.02);
+}
+
+.userprofile__save {
+    display: inline-block;
+    float: left;
+    border: 1px solid #e1e1e1;
+    color: #000;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 14px 35px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }

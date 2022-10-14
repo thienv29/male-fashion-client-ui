@@ -227,7 +227,12 @@ export default function Home() {
                                     <input type="file" id="fileupload"></input>
                                 </div>
                             </div>
-                        </div>                        
+                        </div> 
+                        <div className='row'>
+                            <div className='col-md-12 col-sm-12'>
+                                <a className='userprofile__save' href='#'>Lưu</a>    
+                            </div>      
+                        </div>                     
                     </div>
                 </div>
             </section>
