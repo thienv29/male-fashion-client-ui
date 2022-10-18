@@ -7,7 +7,7 @@ import { setToken } from '../store/feature/UserSlice';
 import { notifyErrorMessage, notifyErrorSystem, notifySuccessMessage } from '../core/utils/notify-action';
 
 const axiosClient = axios.create({
-    baseURL: process.env.NEXT_APP_API_URL,
+    baseURL: 'http://localhost:5000/api/v1',
     headers: {
         'content-type': 'application/json',
     },

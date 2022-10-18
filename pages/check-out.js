@@ -132,7 +132,7 @@ export default function CheckOut() {
                                             ut labore et dolore magna aliqua.</p>
                                         <div className="checkout__input__checkbox">
                                             Select Payment Method:
-                                            <div class="input-group">
+                                            <div className="input-group">
                                                 <select className='payment_method mt-2 mb-2'>
                                                     <option selected>COD</option>
                                                     <option value="1">Banking</option>

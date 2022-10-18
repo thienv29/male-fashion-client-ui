@@ -41,20 +41,20 @@ export default function Shop() {
                                                 <div id='collapseThree' className='collapse show'
                                                     data-parent='#accordionExample'>
                                                     <div className='card-body'>
-                                                        <div class="container mt-4">
-                                                            <div class="row">
-                                                                <div class="col-sm-12">
+                                                        <div className="container mt-4">
+                                                            <div className="row">
+                                                                <div className="col-sm-12">
                                                                     <div id="slider-range"></div>
                                                                 </div>
                                                             </div>
-                                                            <div class="row slider-labels">
-                                                                <div class="col-xs-6 caption" id="slider-range-value1">
+                                                            <div className="row slider-labels">
+                                                                <div className="col-xs-6 caption" id="slider-range-value1">
                                                                 </div>
-                                                                <div class="col-xs-6 price-text-right caption" id="slider-range-value2">
+                                                                <div className="col-xs-6 price-text-right caption" id="slider-range-value2">
                                                                 </div>
                                                             </div>
-                                                            <div class="row">
-                                                                <div class="col-sm-12">
+                                                            <div className="row">
+                                                                <div className="col-sm-12">
                                                                     <form>
                                                                         <input type="hidden" name="min-value" value="$0"></input>
                                                                         <input type="hidden" name="max-value" value=""></input>
