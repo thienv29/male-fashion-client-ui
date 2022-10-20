@@ -38,6 +38,8 @@ export default function Layout({ children }) {
                 <Script src='js/jquery.slicknav.js' strategy='lazyOnload' />
                 <Script src='js/main.js' strategy='lazyOnload' />
                 <Script src='js/price-filter.js' strategy='lazyOnload' />
+                <Script src='js/dataTables.min.js' strategy='lazyOnload' />
+                <Script src='/js/history-order.js' strategy='lazyOnload' />
                 </main>
             <Footer />
             <Toaster containerClassName={'toast'} />
