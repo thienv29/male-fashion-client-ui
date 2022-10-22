@@ -6,7 +6,7 @@ const CategoryService = {
     },
     getById: (id) => {
         return axiosClient.get('/category/get/${id}');
-    }
+    },
 
 };
 export default CategoryService;

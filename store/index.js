@@ -8,12 +8,12 @@ import userReducer from './feature/UserSlice';
 const persistConfig = {
     key: 'root',
     version: 1,
-    storage
+    storage,
 };
 
 const rootReducer = combineReducers({
     appUI: appUIReducer,
-    user: userReducer
+    user: userReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
@@ -21,8 +21,8 @@ export const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
-            serializableCheck: false
-        })
+            serializableCheck: false,
+        }),
 });
 
 export const persistor = persistStore(store);

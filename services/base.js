@@ -6,8 +6,19 @@ import AuthService from './auth.service.js';
 import { setToken } from '../store/feature/UserSlice';
 import { notifyErrorMessage, notifyErrorSystem, notifySuccessMessage } from '../core/utils/notify-action';
 
+const configURL = {
+    baseURL: 'http://localhost:5000/api/v1',
+    urlAnonymous: [
+        '/color/get-all',
+        '/size/get-all',
+        '/product/get-all',
+        '/category/get-all',
+        '/supplier/get-all',
+    ],
+};
+
 const axiosClient = axios.create({
-    baseURL: process.env.NEXT_APP_API_URL,
+    baseURL: 'http://localhost:5000/api/v1',
     headers: {
         'content-type': 'application/json',
     },
@@ -17,17 +28,22 @@ const axiosClient = axios.create({
 
 
 axiosClient.interceptors.request.use(async (config) => {
-    const tokenLocal = store.getState().user.token;
-    if (tokenLocal) {
-        const decodedToken = await jwt_decode(tokenLocal);
-        if (decodedToken.exp < new Date().getTime() / 1000) {
-            const response = await AuthService.refreshToken();
-            store.dispatch(setToken(response.data.result));
+    console.log(config.url);
+    console.log(configURL.urlAnonymous);
+    console.log(configURL.urlAnonymous.includes(config.url));
+    if (!configURL.urlAnonymous.includes(config.url)) {
+        const tokenLocal = store.getState().user.token;
+        if (tokenLocal) {
+            const decodedToken = await jwt_decode(tokenLocal);
+            if (decodedToken.exp < new Date().getTime() / 1000) {
+                const response = await AuthService.refreshToken();
+                store.dispatch(setToken(response.data.result));
+            }
         }
-    }
-    const token = 'Bearer ' + store.getState().user.token;
-    if (token) {
-        config.headers.Authorization = token;
+        const token = 'Bearer ' + store.getState().user.token;
+        if (token) {
+            config.headers.Authorization = token;
+        }
     }
     return config;
 }, (err) => Promise.reject(err));

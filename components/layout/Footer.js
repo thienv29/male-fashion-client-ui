@@ -1,4 +1,4 @@
-export default function Footer(){
+export default function Footer() {
     return (
         <footer className='footer'>
             <div className='container'>
@@ -62,5 +62,5 @@ export default function Footer(){
                 </div>
             </div>
         </footer>
-    )
+    );
 }

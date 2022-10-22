@@ -6,7 +6,7 @@ const SizeService = {
     },
     getById: (id) => {
         return axiosClient.get('/size/get/${id}');
-    }
+    },
 
 };
 export default SizeService;

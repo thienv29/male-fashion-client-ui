@@ -61,9 +61,11 @@
     line-height: 1.5;
     color: #666666;
 }
+
 .text-right {
     text-align: right;
 }
+
 .txt2 {
     font-family: Poppins-Regular;
     font-size: 14px;
@@ -75,9 +77,11 @@
 .bg1 {
     background-color: #3b5998;
 }
+
 .bg2 {
     background-color: #1da1f2;
 }
+
 .bg3 {
     background-color: #ea4335;
 }
@@ -155,6 +159,7 @@
     color: rgb(163, 160, 160);
     font-size: small;
 }
+
 .input100 {
     font-family: Poppins-Medium;
     font-size: 16px;
@@ -404,15 +409,19 @@
 .p-l-55 {
     padding-left: 55px;
 }
+
 .p-r-55 {
     padding-right: 55px;
 }
+
 .p-t-65 {
     padding-top: 65px;
 }
+
 .p-t-8 {
     padding-top: 8px;
 }
+
 .p-t-54 {
     padding-top: 54px;
 }
@@ -420,15 +429,19 @@
 .p-b-54 {
     padding-bottom: 54px;
 }
+
 .p-b-49 {
     padding-bottom: 49px;
 }
+
 .p-b-31 {
     padding-bottom: 31px;
 }
+
 .p-b-20 {
     padding-bottom: 20px;
 }
+
 .p-b-17 {
     padding-bottom: 17px;
 }

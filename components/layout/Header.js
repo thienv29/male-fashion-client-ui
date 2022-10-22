@@ -1,5 +1,4 @@
-import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react';
 
 export default function Header() {
     // const [position, setPosition] = useState(window.pageYOffset)
@@ -7,20 +6,18 @@ export default function Header() {
     useEffect(() => {
         console.log('render');
         const handleScroll = () => {
-            let moving = window.pageYOffset
-            console.log('moving', moving > 0)
-            // console.log('position', position)
+            let moving = window.pageYOffset;
             setVisibles(moving >= 5);
-            // setPosition(moving)
         };
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener('scroll', handleScroll);
         return (() => {
-            window.removeEventListener("scroll", handleScroll);
-        })
-    }, [visibles])
+            window.removeEventListener('scroll', handleScroll);
+        });
+    }, [visibles]);
     return (
         <header className='header'>
-            <div className='header__top' style={visibles ? { height: 0, padding: '0px' } : { height: 'unset', padding: '10px 0' }}>
+            <div className='header__top'
+                 style={visibles ? { height: 0, padding: '0px' } : { height: 'unset', padding: '10px 0' }}>
                 <div className='container'>
                     <div className='row'>
                         <div className='col-lg-6 col-md-7'>
@@ -70,16 +67,17 @@ export default function Header() {
                     </div>
                     <div className='col-lg-3 col-md-3'>
                         <div className='header__nav__option'>
-                            <label for="search-input" href='#' className='search-switch'><img src='img/icon/search.png' alt='' /></label>
-                            <input type="checkbox" hidden name="" class="search__input" id="search-input"></input>
-                            <label for="search-input" class="side__overlay">
+                            <label for='search-input' href='#' className='search-switch'><img src='img/icon/search.png'
+                                                                                              alt='' /></label>
+                            <input type='checkbox' hidden name='' class='search__input' id='search-input'></input>
+                            <label for='search-input' class='side__overlay'>
 
                             </label>
                             <nav className='sidebar-option'>
                                 <form>
                                     <div className='input__group'>
-                                        <input type="text" className='form__input'></input>
-                                        <div><i class="fa fa-search" aria-hidden="true"></i></div>
+                                        <input type='text' className='form__input'></input>
+                                        <div><i class='fa fa-search' aria-hidden='true'></i></div>
                                     </div>
                                 </form>
                             </nav>
