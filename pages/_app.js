@@ -12,10 +12,12 @@ import '../styles/wishlish.css';
 import '../styles/header.css';
 import '../styles/userprofile.css';
 import '../styles/login.css';
-import { useEffect, useState } from 'react';
-import { Provider } from 'react-redux';
-import { persistor, store } from '../store';
-import { PersistGate } from 'redux-persist/integration/react';
+import '../styles/lib/dataTables.min.css'
+import '../styles/history-order.css'
+import { useState, useEffect } from 'react'
+import { Provider } from 'react-redux'
+import { persistor, store } from '../store'
+import { PersistGate } from 'redux-persist/integration/react'
 
 function MyApp({ Component, pageProps }) {
     // return <Component {...pageProps} />
