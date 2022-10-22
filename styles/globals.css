@@ -974,10 +974,6 @@ ol {
     opacity: 0;
 }
 
-.product__item:hover .product__item__text .product__color__select {
-    opacity: 1;
-}
-
 .product__item__pic {
     height: 260px;
     position: relative;
@@ -1099,56 +1095,6 @@ ol {
     font-weight: 700;
 }
 
-.product__item__text .product__color__select {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    opacity: 0;
-    -webkit-transition: all, 0.5s;
-    -o-transition: all, 0.5s;
-    transition: all, 0.5s;
-}
-
-.product__item__text .product__color__select label {
-    display: inline-block;
-    height: 12px;
-    width: 12px;
-    background: #5e64d1;
-    border-radius: 50%;
-    margin-bottom: 0;
-    margin-right: 5px;
-    position: relative;
-    cursor: pointer;
-}
-
-.product__item__text .product__color__select label.black {
-    background: #404a47;
-}
-
-.product__item__text .product__color__select label.grey {
-    background: #d5a667;
-}
-
-.product__item__text .product__color__select label.active:after {
-    opacity: 1;
-}
-
-.product__item__text .product__color__select label:after {
-    position: absolute;
-    left: -3px;
-    top: -3px;
-    height: 18px;
-    width: 18px;
-    border: 1px solid #b9b9b9;
-    content: '';
-    border-radius: 50%;
-    opacity: 0;
-}
-
-.product__item__text .product__color__select label input {
-    position: absolute;
-    visibility: hidden;
-}
 
 /*---------------------
   Shop
@@ -1241,11 +1187,11 @@ ol {
     display: block;
 }
 
-.shop__sidebar__categories ul,
+/* .shop__sidebar__categories ul,
 .shop__sidebar__price ul,
 .shop__sidebar__brand ul {
     height: 225px;
-}
+} */
 
 .shop__sidebar__categories ul li,
 .shop__sidebar__price ul li,
@@ -2061,7 +2007,7 @@ ol {
 
 .breadcrumb-option {
     background: #f3f2ee;
-    padding: 20px 0;
+    padding: 165px 0 20px 0;
 }
 
 .breadcrumb__text h4 {
@@ -2122,6 +2068,7 @@ ol {
 
 .about {
     padding-bottom: 70px;
+    padding-top: 200px;
 }
 
 .about__pic {
@@ -2524,7 +2471,7 @@ ol {
 /*---------------------
   Checkout
 -----------------------*/
-.payment_method{
+.payment_method {
     width: 100% !important;
 }
 
@@ -4026,4 +3973,18 @@ a:active {
     font-weight: bold;
     text-align: center;
     margin-bottom: 20px;
+}
+
+.multiLineLabel {
+    display: inline-block;
+    box-sizing: border-box;
+    white-space: pre-line;
+    word-wrap: break-word;
+}
+
+.multiLineLabel.textMaxLine {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
 }

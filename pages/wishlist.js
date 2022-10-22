@@ -1,4 +1,5 @@
 import Layout from '../components/layout';
+
 export default function Home() {
     return (
         <Layout>
@@ -45,11 +46,11 @@ export default function Home() {
                                         </td>
                                         <td className='wishlist__price'>$ 30.00</td>
                                         <td>
-                                        <div>
-                                            <div className='add__btn'>
-                                                <a href='#'><i className='fa fa-cart-plus' /> Add to cart</a>
+                                            <div>
+                                                <div className='add__btn'>
+                                                    <a href='#'><i className='fa fa-cart-plus' /> Add to cart</a>
+                                                </div>
                                             </div>
-                                        </div>
                                         </td>
                                         <td className='wishlist__close'><i className='fa fa-close' /></td>
                                     </tr>
@@ -66,11 +67,11 @@ export default function Home() {
                                         </td>
                                         <td className='wishlist__price'>$ 32.50</td>
                                         <td>
-                                        <div>
-                                            <div className='add__btn'>
-                                                <a href='#'><i className='fa fa-cart-plus' /> Add to cart</a>
+                                            <div>
+                                                <div className='add__btn'>
+                                                    <a href='#'><i className='fa fa-cart-plus' /> Add to cart</a>
+                                                </div>
                                             </div>
-                                        </div>
                                         </td>
                                         <td className='wishlist__close'><i className='fa fa-close' /></td>
                                     </tr>
@@ -87,11 +88,11 @@ export default function Home() {
                                         </td>
                                         <td className='wishlist__price'>$ 47.00</td>
                                         <td>
-                                        <div>
-                                            <div className='add__btn'>
-                                                <a href='#'><i className='fa fa-cart-plus' /> Add to cart</a>
+                                            <div>
+                                                <div className='add__btn'>
+                                                    <a href='#'><i className='fa fa-cart-plus' /> Add to cart</a>
+                                                </div>
                                             </div>
-                                        </div>
                                         </td>
                                         <td className='wishlist__close'><i className='fa fa-close' /></td>
                                     </tr>
@@ -99,7 +100,7 @@ export default function Home() {
                                         <td className='product__wishlist__item'>
                                             <div className='product__wishlist__item__pic'>
                                                 <a href='#'>
-                                                <img src='img/shopping-cart/cart-4.jpg' alt='' />
+                                                    <img src='img/shopping-cart/cart-4.jpg' alt='' />
                                                 </a>
                                             </div>
                                             <div className='product__wishlist__item__text'>
@@ -108,11 +109,11 @@ export default function Home() {
                                         </td>
                                         <td className='wishlist__price'>$ 30.00</td>
                                         <td>
-                                        <div>
-                                            <div className='add__btn'>
-                                                <a href='#'><i className='fa fa-cart-plus' /> Add to cart</a>
+                                            <div>
+                                                <div className='add__btn'>
+                                                    <a href='#'><i className='fa fa-cart-plus' /> Add to cart</a>
+                                                </div>
                                             </div>
-                                        </div>
                                         </td>
                                         <td className='wishlist__close'><i className='fa fa-close' /></td>
                                     </tr>
@@ -127,22 +128,21 @@ export default function Home() {
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </section>
         </Layout>
     );
 }
+
 export async function getStaticProps() {
     // Call an external API endpoint to get posts
-    
-  
+
+
     // By returning { props: { posts } }, the Blog component
     // will receive `posts` as a prop at build time
     return {
-      props: {
-        
-      },
-    }
-  }
+        props: {},
+    };
+}

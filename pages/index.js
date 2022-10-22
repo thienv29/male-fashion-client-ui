@@ -515,15 +515,14 @@ export default function Home() {
         </Layout>
     );
 }
+
 export async function getStaticProps() {
     // Call an external API endpoint to get posts
-    
-  
+
+
     // By returning { props: { posts } }, the Blog component
     // will receive `posts` as a prop at build time
     return {
-      props: {
-        
-      },
-    }
-  }
+        props: {},
+    };
+}

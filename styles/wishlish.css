@@ -180,7 +180,7 @@
     .shopping__wishlist__table table thead {
         display: none;
     }
-    
+
     .shopping__wishlist__table table tbody tr {
         display: flex;
         flex-direction: column;
@@ -191,7 +191,7 @@
         margin-bottom: 5px;
     }
 
-    .shopping__wishlist__table table tbody tr td{
+    .shopping__wishlist__table table tbody tr td {
         padding: 10px 0;
     }
 
@@ -217,7 +217,7 @@
         top: 0;
     }
 
-    .continue__btn{
+    .continue__btn {
         float: none;
     }
 }

@@ -1,5 +1,4 @@
 import Layout from '../components/layout';
-import Map from '../components/local-page/contact/Map';
 import { Constant } from '../core/constant';
 
 export default function Contact() {
@@ -7,10 +6,10 @@ export default function Contact() {
         <Layout>
             <div className='map'>
                 <iframe
-                    width="600"
-                    height="450"
-                    style={{border:0}}
-                    loading="lazy"
+                    width='600'
+                    height='450'
+                    style={{ border: 0 }}
+                    loading='lazy'
                     allowFullScreen
                     src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyB12a91SpS1s699OhnsEyMKk58pYdfv_Ec&q=${Constant.ADDRESS}`}>
                 </iframe>
@@ -63,15 +62,14 @@ export default function Contact() {
         </Layout>
     );
 }
+
 export async function getStaticProps() {
     // Call an external API endpoint to get posts
-    
-  
+
+
     // By returning { props: { posts } }, the Blog component
     // will receive `posts` as a prop at build time
     return {
-      props: {
-        
-      },
-    }
-  }
+        props: {},
+    };
+}

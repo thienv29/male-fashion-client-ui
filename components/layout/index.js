@@ -17,7 +17,7 @@ export default function Layout({ children }) {
                 <meta name='keywords' content='Male_Fashion, unica, creative, html' />
                 <meta name='viewport' content='width=device-width, initial-scale=1.0' />
                 <meta httpEquiv='X-UA-Compatible' content='ie=edge' />
-                <link href="/img/logo1.png" rel="icon" />
+                <link href='/img/logo1.png' rel='icon' />
                 <title>{appUi.title}</title>
 
                 <link
@@ -38,11 +38,9 @@ export default function Layout({ children }) {
                 <Script src='js/jquery.slicknav.js' strategy='lazyOnload' />
                 <Script src='js/main.js' strategy='lazyOnload' />
                 <Script src='js/price-filter.js' strategy='lazyOnload' />
-                </main>
+            </main>
             <Footer />
             <Toaster containerClassName={'toast'} />
-
-
 
 
         </div>
