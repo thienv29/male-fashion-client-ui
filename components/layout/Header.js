@@ -33,8 +33,8 @@ export default function Header() {
                                 <div className='header__top__hover'>
                                     <span>Usd <i className='arrow_carrot-down' /></span>
                                     <ul>
-                                        <li>USD</li>
-                                        <li>EUR</li>
+                                        <li>Đăng nhập</li>
+                                        <li>Đăng ký</li>
                                     </ul>
                                 </div>
                             </div>
@@ -44,12 +44,12 @@ export default function Header() {
             </div>
             <div className='container'>
                 <div className='row'>
-                    <div className='col-lg-3 col-md-3'>
+                    <div className='col-lg-4 col-md-3'>
                         <div className='header__logo'>
                             <a href='/'><img src='img/logo.png' alt='' /></a>
                         </div>
                     </div>
-                    <div className='col-lg-6 col-md-6'>
+                    <div className='col-lg-4 col-md-6'>
                         <nav className='header__menu mobile-menu'>
                             <ul>
                                 {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
@@ -64,7 +64,7 @@ export default function Header() {
                             </ul>
                         </nav>
                     </div>
-                    <div className='col-lg-3 col-md-3'>
+                    <div className='col-lg-4 col-md-3'>
                         <div className='header__nav__option'>
                             <label for='search-input' href='#' className='search-switch'><img src='img/icon/search.png'
                                                                                               alt='' /></label>
