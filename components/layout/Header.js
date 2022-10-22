@@ -4,7 +4,6 @@ export default function Header() {
     // const [position, setPosition] = useState(window.pageYOffset)
     const [visibles, setVisibles] = useState(false);
     useEffect(() => {
-        console.log('render');
         const handleScroll = () => {
             let moving = window.pageYOffset;
             setVisibles(moving >= 5);
@@ -69,15 +68,15 @@ export default function Header() {
                         <div className='header__nav__option'>
                             <label for='search-input' href='#' className='search-switch'><img src='img/icon/search.png'
                                                                                               alt='' /></label>
-                            <input type='checkbox' hidden name='' class='search__input' id='search-input'></input>
-                            <label for='search-input' class='side__overlay'>
+                            <input type='checkbox' hidden name='' className='search__input' id='search-input'></input>
+                            <label for='search-input' className='side__overlay'>
 
                             </label>
                             <nav className='sidebar-option'>
                                 <form>
                                     <div className='input__group'>
                                         <input type='text' className='form__input'></input>
-                                        <div><i class='fa fa-search' aria-hidden='true'></i></div>
+                                        <div><i className='fa fa-search' aria-hidden='true'></i></div>
                                     </div>
                                 </form>
                             </nav>

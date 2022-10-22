@@ -1,6 +1,6 @@
 import Layout from '../components/layout';
 
-export default function Shop() {
+export default function ProductDetail() {
     return (
         <>
             <Layout>
@@ -46,7 +46,7 @@ export default function Shop() {
                                         <h1 className=''>MULTIPLE PERSONALITY T-SHIRT</h1>
                                         <div className='d-flex mb-3'>
                                             <div className='item-sku'>
-                                                SKU: <span className='variant-sku' itemprop='sku'
+                                                SKU: <span className='variant-sku' itemProp='sku'
                                                            content='N102-S-W'>N102-S-W</span>
                                             </div>
                                             &nbsp; | &nbsp;
@@ -367,11 +367,11 @@ export default function Shop() {
                                                          data-setbg='img/product/product-1.jpg'>
                                                         <span className='label'>New</span>
                                                         <ul className='product__hover'>
-                                                            <li><a href='#'><img src='img/icon/heart.png' alt='' /></a>
+                                                            <li><a href='#'><img src='/img/icon/heart.png' alt='' /></a>
                                                             </li>
-                                                            <li><a href='#'><img src='img/icon/compare.png' alt='' />
+                                                            <li><a href='#'><img src='/img/icon/compare.png' alt='' />
                                                                 <span>Compare</span></a></li>
-                                                            <li><a href='#'><img src='img/icon/search.png' alt='' /></a>
+                                                            <li><a href='#'><img src='/img/icon/search.png' alt='' /></a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -413,7 +413,8 @@ export default function Shop() {
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps(params) {
+    console.log(params);
     // Call an external API endpoint to get posts
 
 

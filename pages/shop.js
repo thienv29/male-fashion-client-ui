@@ -12,14 +12,12 @@ export default function Shop() {
     const [sizes, setSizes] = useState([]);
     const [suppliers, setSuppliers] = useState([]);
     const [products, setProducts] = useState([]);
-    const [colors, setColors] = useState([]);
 
     useEffect(() => {
         getCategories();
         getSizes();
         getBrands();
         getProducts();
-        getColors();
     }, []);
     const getCategories = async () => {
         const data = await CategoryService.getAll();
@@ -36,10 +34,6 @@ export default function Shop() {
     const getProducts = async () => {
         const data = await ProductService.getAll();
         setProducts(data.result);
-    };
-    const getColors = async () => {
-        const data = await ColorService.getAll();
-        setColors(data.result);
     };
     return (
         <>
@@ -81,21 +75,21 @@ export default function Shop() {
                                                 <div id='collapseThree' className='collapse show'
                                                      data-parent='#accordionExample'>
                                                     <div className='card-body'>
-                                                        <div class='container mt-4'>
-                                                            <div class='row'>
-                                                                <div class='col-sm-12'>
+                                                        <div className='container mt-4'>
+                                                            <div className='row'>
+                                                                <div className='col-sm-12'>
                                                                     <div id='slider-range' />
                                                                 </div>
                                                             </div>
-                                                            <div class='row slider-labels'>
-                                                                <div class='col-xs-6 caption' id='slider-range-value1'>
+                                                            <div className='row slider-labels'>
+                                                                <div className='col-xs-6 caption' id='slider-range-value1'>
                                                                 </div>
-                                                                <div class='col-xs-6 price-text-right caption'
+                                                                <div className='col-xs-6 price-text-right caption'
                                                                      id='slider-range-value2'>
                                                                 </div>
                                                             </div>
-                                                            <div class='row'>
-                                                                <div class='col-sm-12'>
+                                                            <div className='row'>
+                                                                <div className='col-sm-12'>
                                                                     <form>
                                                                         <input type='hidden' name='min-value'
                                                                                value='$0' />
@@ -164,25 +158,7 @@ export default function Shop() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className='card'>
-                                                <div className='card-heading'>
-                                                    <a data-toggle='collapse' data-target='#collapseFive'>Colors</a>
-                                                </div>
-                                                <div id='collapseFive' className='collapse show'
-                                                     data-parent='#accordionExample'>
-                                                    <div className='card-body'>
-                                                        <div className='shop__sidebar__color'>
-                                                            {colors.map((item, index) => {
-                                                                return <label key={index} className={`c-${index}`}
-                                                                              htmlFor={`sp-${index}`}>
-                                                                    <input type='radio' id={`sp-${index}`} />
-                                                                </label>;
-                                                            })}
 
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -35,7 +35,7 @@ export default function Signin() {
                                 </div>
 
                                 <div className='container-login100-form-btn'>
-                                    <a href='#' class='primary-btn w-100 text-center'>Sign in</a>
+                                    <a href='#' className='primary-btn w-100 text-center'>Sign in</a>
                                 </div>
 
                                 <div className='txt1 text-center p-t-54 p-b-20'>

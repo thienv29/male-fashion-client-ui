@@ -3,7 +3,7 @@
 export default function Product({ product }) {
     const { image, name, star, exportPrice, salePrice } = product;
     return (
-        <div className='col-lg-4 col-md-6 col-sm-6'>
+        <a className='col-lg-4 col-md-6 col-sm-6' href={`/${product._id}`}>
             <div className='product__item sale'>
                 <div className='product__item__pic set-bg' style={{ backgroundImage: `url(${image})` }}>
                     {salePrice > 0 ? <span className='label'>Sale</span> : ''}
@@ -24,6 +24,6 @@ export default function Product({ product }) {
                     <h5>${salePrice > 0 ? salePrice : exportPrice}</h5>
                 </div>
             </div>
-        </div>
+        </a>
     );
 }

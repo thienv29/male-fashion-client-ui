@@ -52,7 +52,7 @@ export default function Signup() {
                                     <span className='focus-input100'></span>
                                 </div>
                                 <div className='container-login100-form-btn'>
-                                    <a href='#' class='primary-btn w-100 text-center'>Sign up</a>
+                                    <a href='#' className='primary-btn w-100 text-center'>Sign up</a>
                                 </div>
                                 <div className='flex-col-c p-t-65'>
                                     <a href='sign-in' className='txt2 a-login'>

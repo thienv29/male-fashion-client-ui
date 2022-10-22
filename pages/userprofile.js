@@ -99,7 +99,7 @@ export default function Home() {
                                                     <div className='userprofile-radio__item' role='radio'>
                                                         <label>
                                                             <input type='radio' name='radio'></input>
-                                                            <span class='checkmark'></span>
+                                                            <span className='checkmark'></span>
                                                         </label>
                                                         <div className='userprofile-radio__item-content'>
                                                             Nam
@@ -108,7 +108,7 @@ export default function Home() {
                                                     <div className='userprofile-radio__item' role='radio'>
                                                         <label>
                                                             <input type='radio' name='radio'></input>
-                                                            <span class='checkmark'></span>
+                                                            <span className='checkmark'></span>
                                                         </label>
                                                         <div className='userprofile-radio__item-content'>
                                                             Nữ
@@ -117,7 +117,7 @@ export default function Home() {
                                                     <div className='userprofile-radio__item' role='radio'>
                                                         <label>
                                                             <input type='radio' name='radio'></input>
-                                                            <span class='checkmark'></span>
+                                                            <span className='checkmark'></span>
                                                         </label>
                                                         <div className='userprofile-radio__item-content'>
                                                             Khác
