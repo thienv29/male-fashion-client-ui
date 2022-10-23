@@ -28,13 +28,28 @@ export default function Header() {
                             <div className='header__top__right'>
                                 <div className='header__top__links'>
                                     <a href='#'>Sign in</a>
-                                    <a href='#'>FAQs</a>
+                                <div className="header__navbar-item header__navbar-user">
+                                        <img src="img/shopping-cart/cart-1.jpg" alt="" class="header__navbar-user-img" 
+                                        style={visibles ? { display: 'none' } : { }}></img>
+                                        <span class="header__navbar-user-name">Nguyễn Tuấn Hải</span>
+                                        <ul class="header__navbar-user-menu">
+                                            <li class="header__navbar-user-item">
+                                                <a href="/userprofile">My Account</a>
+                                            </li>
+                                            <li class="header__navbar-user-item">
+                                                <a href="/history-order">History Order</a>
+                                            </li>
+                                            <li class="header__navbar-user-item header__navbar-user-item--separate">
+                                                <a href="">Log Out</a>
+                                            </li>
+                                        </ul>
+                                </div>
                                 </div>
                                 <div className='header__top__hover'>
                                     <span>Usd <i className='arrow_carrot-down' /></span>
                                     <ul>
-                                        <li>Đăng nhập</li>
-                                        <li>Đăng ký</li>
+                                        <li><a href="/sign-in">Đăng nhập</a></li>
+                                        <li><a href="/sign-up">Đăng ký</a></li>
                                     </ul>
                                 </div>
                             </div>
