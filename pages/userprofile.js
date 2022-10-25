@@ -7,7 +7,6 @@ export default function Home() {
     function defaultBtnActive() {
         defaultBtn.click();
     }
-
     return (
         <Layout>
             <section className='breadcrumb-option'>
