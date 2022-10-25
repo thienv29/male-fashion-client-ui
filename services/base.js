@@ -7,7 +7,7 @@ import { setToken } from '../store/feature/UserSlice';
 import { notifyErrorMessage, notifyErrorSystem, notifySuccessMessage } from '../core/utils/notify-action';
 
 const configURL = {
-    baseURL: 'http://localhost:5000/api/v1',
+    baseURL: 'https://male-fashion-shop-api.run-ap-south1.goorm.io/api/v1',
     urlAnonymous: [
         '/color/get-all',
         '/size/get-all',
@@ -18,7 +18,7 @@ const configURL = {
 };
 
 const axiosClient = axios.create({
-    baseURL: 'http://localhost:5000/api/v1',
+    baseURL: 'https://male-fashion-shop-api.run-ap-south1.goorm.io/api/v1',
     headers: {
         'content-type': 'application/json',
     },
@@ -28,9 +28,6 @@ const axiosClient = axios.create({
 
 
 axiosClient.interceptors.request.use(async (config) => {
-    console.log(config.url);
-    console.log(configURL.urlAnonymous);
-    console.log(configURL.urlAnonymous.includes(config.url));
     if (!configURL.urlAnonymous.includes(config.url)) {
         const tokenLocal = store.getState().user.token;
         if (tokenLocal) {
