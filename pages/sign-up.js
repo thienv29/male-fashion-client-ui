@@ -18,6 +18,24 @@ export default function Signup() {
                                 <input className="input100" type="text" name="username" placeholder="Type your username"></input>
                                 <span className="focus-input100"></span>
                             </div>
+                            
+                            <div className="wrap-input100 validate-input m-b-23" data-validate="First name is required">
+                                <span className="label-input100">First name</span>
+                                <input className="input100" type="text" name="firstname" placeholder="Type your first name"></input>
+                                <span className="focus-input100"></span>
+                            </div>
+
+                            <div className="wrap-input100 validate-input m-b-23" data-validate="Last name is required">
+                                <span className="label-input100">Last name</span>
+                                <input className="input100" type="text" name="lastname" placeholder="Type your last name"></input>
+                                <span className="focus-input100"></span>
+                            </div>
+
+                            <div className="wrap-input100 validate-input m-b-23" data-validate="Birthday is required">
+                                <span className="label-input100">Birthday</span>
+                                <input className="input100" type="date" name="birthday"></input>
+                                <span className="focus-input100"></span>
+                            </div>
 
                             <div className="wrap-input100 validate-input m-b-23" data-validate="Email is required">
                                 <span className="label-input100">Email</span>
