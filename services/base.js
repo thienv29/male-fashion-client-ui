@@ -18,7 +18,7 @@ const configURL = {
 };
 
 const axiosClient = axios.create({
-    baseURL: 'https://male-fashion-shop-api.run-ap-south1.goorm.io/api/v1',
+    baseURL: configURL.baseURL,
     headers: {
         'content-type': 'application/json',
     },
