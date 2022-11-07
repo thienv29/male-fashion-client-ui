@@ -28,9 +28,9 @@ const axiosClient = axios.create({
 
 
 axiosClient.interceptors.request.use(async (config) => {
-    console.log(config.url);
-    console.log(configURL.urlAnonymous);
-    console.log(configURL.urlAnonymous.includes(config.url));
+    // console.log(config.url);
+    // console.log(configURL.urlAnonymous);
+    // console.log(configURL.urlAnonymous.includes(config.url));
     if (!configURL.urlAnonymous.includes(config.url)) {
         const tokenLocal = store.getState().user.token;
         if (tokenLocal) {
