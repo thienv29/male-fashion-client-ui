@@ -74,9 +74,9 @@ export default function Header() {
                         <nav className='header__menu mobile-menu'>
                             <ul>
                                 {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-                                <li className={url === "/" ? " active" : ""}><a href='/'>Home</a></li>
-                                <li className={url === "/shop" ? " active" : ""}><a href='/shop'>Shop</a></li>
-                                <li className={url === "/about" || "/contact" ? " active" : ""}><a href='/about'>US</a>
+                                <li className={url === "/" ? "active" : ""}><a href='/'>Home</a></li>
+                                <li className={url === "/shop" ? "active" : ""}><a href='/shop'>Shop</a></li>
+                                <li className={url === "/about" ? "active" : "" || url === "/contact" ? "active" : ""}><a href='/about'>US</a>
                                     <ul className='dropdown'>
                                         <li className='active'><a href='/about'>About Us</a></li>
                                         <li ><a href='/contact'>Contact</a></li>
