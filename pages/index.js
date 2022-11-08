@@ -53,7 +53,7 @@ export default function Home() {
                                             <p>A specialist label creating luxury essentials. Ethically crafted with an
                                                 unwavering
                                                 commitment to exceptional quality.</p>
-                                            <a href='#' className='primary-btn'>Shop now <span
+                                            <a href='/shop' className='primary-btn'>Shop now <span
                                                 className='arrow_right' /></a>
                                             <div className='hero__social'>
                                                 <a href='#'><i className='fa fa-facebook' /></a>
@@ -78,7 +78,7 @@ export default function Home() {
                                     </div>
                                     <div className='banner__item__text'>
                                         <h2>Clothing Collections 2030</h2>
-                                        <a href='#'>Shop now</a>
+                                        <a href='/shop'>Shop now</a>
                                     </div>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@ export default function Home() {
                                     </div>
                                     <div className='banner__item__text'>
                                         <h2>Accessories</h2>
-                                        <a href='#'>Shop now</a>
+                                        <a href='/shop'>Shop now</a>
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +100,7 @@ export default function Home() {
                                     </div>
                                     <div className='banner__item__text'>
                                         <h2>Shoes Spring 2030</h2>
-                                        <a href='#'>Shop now</a>
+                                        <a href='/shop'>Shop now</a>
                                     </div>
                                 </div>
                             </div>
@@ -445,7 +445,7 @@ export default function Home() {
                                             <p>Seconds</p>
                                         </div>
                                     </div>
-                                    <a href='#' className='primary-btn'>Shop now</a>
+                                    <a href='/shop' className='primary-btn'>Shop now</a>
                                 </div>
                             </div>
                         </div>
