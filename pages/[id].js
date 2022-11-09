@@ -11,6 +11,8 @@ export default function ProductDetail() {
     const [colors, setColors] = useState([]);
     const [sizeSelected, setSizeSelected] = useState('');
     const [colorSelected, setColorSelected] = useState('');
+    const [mainImage, setMainImage] = useState('');
+
     const router = useRouter();
     const { id } = router.query;
 
@@ -27,6 +29,7 @@ export default function ProductDetail() {
     useEffect(() => {
         standardDataColors();
         standardDataSizes();
+        setMainImage(image);
     }, [product])
 
 
@@ -99,12 +102,12 @@ export default function ProductDetail() {
                                 <div className='row'>
                                     <div className='col-xs-12 col-sm-6 col-lg-6 col-md-6'>
                                         <div className='product-img-main'>
-                                            <img src={image} alt='' />
+                                            <img src={mainImage ? mainImage : ''} alt='' />
                                         </div>
                                         <div className='d-flex mt-2 product-img-container'>
                                             {listDetails ? listDetails.map((detail) => (
                                                 <div className=' product-img-child'>
-                                                    <img src={detail.image} alt='' />
+                                                    <img src={detail.image} alt='' onClick={() => setMainImage(detail.image)} />
                                                 </div>
                                             )) : ''}
 
@@ -122,7 +125,7 @@ export default function ProductDetail() {
                                             </div>
                                             &nbsp; | &nbsp;
                                             <div className='item-sku'>
-                                                NCC: 
+                                                NCC:
                                                 <span className='vendor'>
                                                     {supplier ? supplier.sortName : ''}
                                                 </span>

@@ -1344,7 +1344,7 @@ ol {
 }
 
 .shop__sidebar__accordion .card-heading a:after,
-.shop__sidebar__accordion .card-heading > a.active[aria-expanded='false']:after {
+.shop__sidebar__accordion .card-heading>a.active[aria-expanded='false']:after {
     content: '';
     font-family: 'FontAwesome';
     font-size: 24px;
@@ -2559,11 +2559,11 @@ ol {
     visibility: hidden;
 }
 
-.checkout__input__checkbox label input:checked ~ .checkmark {
+.checkout__input__checkbox label input:checked~.checkmark {
     border-color: #e53637;
 }
 
-.checkout__input__checkbox label input:checked ~ .checkmark:after {
+.checkout__input__checkbox label input:checked~.checkmark:after {
     opacity: 1;
 }
 
@@ -3987,4 +3987,17 @@ a:active {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
+}
+
+.active-filter a {
+    color: black !important;
+}
+
+.active-filter-size {
+    background: black;
+    color: white;
+}
+
+li.disabled{
+    pointer-events:none !important;
 }

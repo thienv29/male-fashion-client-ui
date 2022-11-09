@@ -7,7 +7,7 @@ import '../styles/lib/nice-select.css';
 import '../styles/lib/owl.carousel.min.css';
 import '../styles/productdetail.css';
 import '../styles/lib/slicknav.min.css';
-import '../styles/lib/price-filter.css';
+// import '../styles/lib/price-filter.css';
 import '../styles/wishlish.css';
 import '../styles/header.css';
 import '../styles/userprofile.css';
