@@ -1,6 +1,20 @@
 import Layout from '../components/layout';
+import { useState, useEffect } from 'react';
+import ProductService from '../services/product.service';
+import Product from '../components/shared/product';
 
 export default function Home() {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        getProductsFeature();
+    }, []);
+
+    const getProductsFeature = async () => {
+        const data = await ProductService.getFeature();
+        setProducts(data.result);
+    }
+
     return (
         <Layout>
             <div>
@@ -16,7 +30,7 @@ export default function Home() {
                                             <p>A specialist label creating luxury essentials. Ethically crafted with an
                                                 unwavering
                                                 commitment to exceptional quality.</p>
-                                            <a href='#' className='primary-btn'>Shop now <span
+                                            <a href='/shop' className='primary-btn'>Shop now <span
                                                 className='arrow_right' /></a>
                                             <div className='hero__social'>
                                                 <a href='#'><i className='fa fa-facebook' /></a>
@@ -39,7 +53,7 @@ export default function Home() {
                                             <p>A specialist label creating luxury essentials. Ethically crafted with an
                                                 unwavering
                                                 commitment to exceptional quality.</p>
-                                            <a href='#' className='primary-btn'>Shop now <span
+                                            <a href='/shop' className='primary-btn'>Shop now <span
                                                 className='arrow_right' /></a>
                                             <div className='hero__social'>
                                                 <a href='#'><i className='fa fa-facebook' /></a>
@@ -64,7 +78,7 @@ export default function Home() {
                                     </div>
                                     <div className='banner__item__text'>
                                         <h2>Clothing Collections 2030</h2>
-                                        <a href='#'>Shop now</a>
+                                        <a href='/shop'>Shop now</a>
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +89,7 @@ export default function Home() {
                                     </div>
                                     <div className='banner__item__text'>
                                         <h2>Accessories</h2>
-                                        <a href='#'>Shop now</a>
+                                        <a href='/shop'>Shop now</a>
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +100,7 @@ export default function Home() {
                                     </div>
                                     <div className='banner__item__text'>
                                         <h2>Shoes Spring 2030</h2>
-                                        <a href='#'>Shop now</a>
+                                        <a href='/shop'>Shop now</a>
                                     </div>
                                 </div>
                             </div>
@@ -98,14 +112,15 @@ export default function Home() {
                         <div className='row'>
                             <div className='col-lg-12'>
                                 <ul className='filter__controls'>
-                                    <li className='active' data-filter='*'>Best Sellers</li>
-                                    <li data-filter='.new-arrivals'>New Arrivals</li>
-                                    <li data-filter='.hot-sales'>Hot Sales</li>
+                                    <li className='active' data-filter='*'>Feature</li>
                                 </ul>
                             </div>
                         </div>
                         <div className='row product__filter'>
-                            <div className='col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals'>
+                        {products.map(item => {
+                                            return <Product typeCol={true} product={item} key={item._id} />;
+                                        })}
+                            {/* <div className='col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals'>
                                 <div className='product__item'>
                                     <div className='product__item__pic set-bg' data-setbg='img/product/product-1.jpg'>
                                         <span className='label'>New</span>
@@ -387,7 +402,7 @@ export default function Home() {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </section>
@@ -430,7 +445,7 @@ export default function Home() {
                                             <p>Seconds</p>
                                         </div>
                                     </div>
-                                    <a href='#' className='primary-btn'>Shop now</a>
+                                    <a href='/shop' className='primary-btn'>Shop now</a>
                                 </div>
                             </div>
                         </div>
@@ -442,17 +457,17 @@ export default function Home() {
                             <div className='col-lg-8'>
                                 <div className='instagram__pic'>
                                     <div className='instagram__pic__item set-bg'
-                                         data-setbg='img/instagram/instagram-1.jpg' />
+                                        data-setbg='img/instagram/instagram-1.jpg' />
                                     <div className='instagram__pic__item set-bg'
-                                         data-setbg='img/instagram/instagram-2.jpg' />
+                                        data-setbg='img/instagram/instagram-2.jpg' />
                                     <div className='instagram__pic__item set-bg'
-                                         data-setbg='img/instagram/instagram-3.jpg' />
+                                        data-setbg='img/instagram/instagram-3.jpg' />
                                     <div className='instagram__pic__item set-bg'
-                                         data-setbg='img/instagram/instagram-4.jpg' />
+                                        data-setbg='img/instagram/instagram-4.jpg' />
                                     <div className='instagram__pic__item set-bg'
-                                         data-setbg='img/instagram/instagram-5.jpg' />
+                                        data-setbg='img/instagram/instagram-5.jpg' />
                                     <div className='instagram__pic__item set-bg'
-                                         data-setbg='img/instagram/instagram-6.jpg' />
+                                        data-setbg='img/instagram/instagram-6.jpg' />
                                 </div>
                             </div>
                             <div className='col-lg-4'>

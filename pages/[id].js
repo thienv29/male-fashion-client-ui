@@ -1,6 +1,78 @@
 import Layout from '../components/layout';
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
+import ProductService from '../services/product.service';
+import Product from '../components/shared/product';
 
 export default function ProductDetail() {
+    const [relatedProducts, setRelatedProducts] = useState([]);
+    const [product, setProduct] = useState({});
+    const [sizes, setSizes] = useState([]);
+    const [colors, setColors] = useState([]);
+    const [sizeSelected, setSizeSelected] = useState('');
+    const [colorSelected, setColorSelected] = useState('');
+    const router = useRouter();
+    const { id } = router.query;
+
+
+    const { image, name, code, description, supplier, star, exportPrice, salePrice, listDetails } = product;
+    // console.log(supplier)
+
+    useEffect(() => {
+        getRelatedProducts(id);
+        getProductById(id);
+
+    }, []);
+
+    useEffect(() => {
+        standardDataColors();
+        standardDataSizes();
+    }, [product])
+
+
+    const standardDataColors = () => {
+        const colorsCreated = [];
+        if (listDetails) {
+            listDetails.forEach(detail => {
+                if (colorsCreated.findIndex(item => item._id == detail.color._id) == -1) {
+                    colorsCreated.push(detail.color)
+                };
+            });
+            setColors(colorsCreated);
+        }
+    }
+
+    const standardDataSizes = () => {
+        const sizesCreated = [];
+        if (listDetails) {
+            listDetails.forEach(detail => {
+                if (sizesCreated.findIndex(item => item._id == detail.size._id) == -1) {
+                    sizesCreated.push(detail.size)
+                };
+            });
+            setSizes(sizesCreated);
+        }
+    }
+
+    const getProductById = async () => {
+        const data = await ProductService.getById(id);
+        const product = data.result;
+        setProduct(product);
+    }
+
+    const getRelatedProducts = async (id) => {
+        const data = await ProductService.getRelatedProducts(id);
+        setRelatedProducts(data.result);
+    }
+
+    const handleClickSize = (id) => {
+        setSizeSelected(id);
+    }
+
+    const handleClickColor = (id) => {
+        setColorSelected(id);
+    }
+
     return (
         <>
             <Layout>
@@ -11,8 +83,8 @@ export default function ProductDetail() {
                                 <div className='breadcrumb__text'>
                                     <h4>Shop</h4>
                                     <div className='product__details__breadcrumb'>
-                                        <a href='./index.html'>Home</a>
-                                        <a href='./shop.html'>Shop</a>
+                                        <a href='/'>Home</a>
+                                        <a href='/shop'>Shop</a>
                                         <span>Product Details</span>
                                     </div>
                                 </div>
@@ -27,33 +99,32 @@ export default function ProductDetail() {
                                 <div className='row'>
                                     <div className='col-xs-12 col-sm-6 col-lg-6 col-md-6'>
                                         <div className='product-img-main'>
-                                            <img src='img/banner/banner-1.jpg' alt='' />
+                                            <img src={image} alt='' />
                                         </div>
                                         <div className='d-flex mt-2 product-img-container'>
-                                            <div className='active product-img-child'>
-                                                <img src='img/banner/banner-1.jpg' alt='' />
-                                            </div>
-                                            <div className='product-img-child'>
-                                                <img src='img/banner/banner-1.jpg' alt='' />
-                                            </div>
-                                            <div className='product-img-child'>
-                                                <img src='img/banner/banner-1.jpg' alt='' />
-                                            </div>
+                                            {listDetails ? listDetails.map((detail) => (
+                                                <div className=' product-img-child'>
+                                                    <img src={detail.image} alt='' />
+                                                </div>
+                                            )) : ''}
+
                                         </div>
 
                                     </div>
                                     <div className='col-xs-12 col-sm-6 col-lg-6 col-md-6'>
-                                        <h1 className=''>MULTIPLE PERSONALITY T-SHIRT</h1>
+                                        <h1 className=''>{name}</h1>
                                         <div className='d-flex mb-3'>
                                             <div className='item-sku'>
                                                 SKU: <span className='variant-sku' itemProp='sku'
-                                                           content='N102-S-W'>N102-S-W</span>
+                                                    content='N102-S-W'>{listDetails ? listDetails.map((detail) =>
+                                                        (detail.color._id == colorSelected && detail.size._id == sizeSelected ? detail.code : '')
+                                                    ) : ''}</span>
                                             </div>
                                             &nbsp; | &nbsp;
                                             <div className='item-sku'>
-                                                Thương hiệu:
+                                                NCC: 
                                                 <span className='vendor'>
-                                                    YG SHOP
+                                                    {supplier ? supplier.sortName : ''}
                                                 </span>
                                             </div>
                                             &nbsp; | &nbsp;
@@ -76,42 +147,50 @@ export default function ProductDetail() {
                                             <div className='product__details__option  text-left'>
                                                 <div className='product__details__option__size mb-3'>
                                                     <span>Size:</span>
-                                                    <label for='xxl'>xxl
+                                                    {sizes ? sizes.map((detail) => (
+                                                        <label htmlFor={detail.name} className={sizeSelected == detail._id ? 'active' : ''} onClick={() => handleClickSize(detail._id)}>{detail.name}
+                                                            <input type='radio' name='size' id={detail.name} value={detail._id} />
+                                                        </label>
+                                                    )) : ''}
+                                                    {/* <label htmlFor='xxl'>xxl
                                                         <input type='radio' id='xxl' />
                                                     </label>
-                                                    <label className='active' for='xl'>xl
+                                                    <label className='active' htmlFor='xl'>xl
                                                         <input type='radio' id='xl' />
                                                     </label>
-                                                    <label for='l'>l
+                                                    <label htmlFor='l'>l
                                                         <input type='radio' id='l' />
                                                     </label>
-                                                    <label for='sm'>s
+                                                    <label htmlFor='sm'>s
                                                         <input type='radio' id='sm' />
-                                                    </label>
+                                                    </label> */}
                                                 </div>
                                                 <div className='product__details__option__color'>
                                                     <span>Color:</span>
-                                                    <label className='c-1' for='sp-1'>
+                                                    {colors ? colors.map((detail) => (
+                                                        <label style={{ backgroundColor: detail.code }} htmlFor={detail.name} onClick={() => handleClickColor(detail._id)}>
+                                                            <input type='radio' name='color' id={detail.name} value={detail._id} />
+                                                        </label>
+                                                    )) : ''}
+                                                    {/* <label className='c-1' htmlFor='sp-1'>
                                                         <input type='radio' id='sp-1' />
                                                     </label>
-                                                    <label className='c-2' for='sp-2'>
+                                                    <label className='c-2' htmlFor='sp-2'>
                                                         <input type='radio' id='sp-2' />
                                                     </label>
-                                                    <label className='c-3' for='sp-3'>
+                                                    <label className='c-3' htmlFor='sp-3'>
                                                         <input type='radio' id='sp-3' />
                                                     </label>
-                                                    <label className='c-4' for='sp-4'>
+                                                    <label className='c-4' htmlFor='sp-4'>
                                                         <input type='radio' id='sp-4' />
                                                     </label>
-                                                    <label className='c-9' for='sp-9'>
+                                                    <label className='c-9' htmlFor='sp-9'>
                                                         <input type='radio' id='sp-9' />
-                                                    </label>
+                                                    </label> */}
                                                 </div>
 
                                             </div>
-                                            <p className='text-left'>Coat with quilted lining and an adjustable hood.
-                                                Featuring long sleeves with adjustable
-                                                cuff tabs...</p>
+                                            <p className='text-left'>{description}</p>
                                             <div className='product__details__cart__option text-left'>
                                                 <a href='#' className='primary-btn mr-3'>add to cart</a>
                                                 <div className='quantity'>
@@ -135,7 +214,7 @@ export default function ProductDetail() {
                                             <ul className='nav nav-tabs' role='tablist'>
                                                 <li className='nav-item'>
                                                     <a className='nav-link active' data-toggle='tab' href='#tabs-5'
-                                                       role='tab'>Description</a>
+                                                        role='tab'>Description</a>
                                                 </li>
                                                 <li className='nav-item'>
                                                     <a className='nav-link' data-toggle='tab' href='#tabs-6' role='tab'>Customer
@@ -244,7 +323,10 @@ export default function ProductDetail() {
                                             </div>
                                         </div>
                                         <div className='row'>
-                                            <div className='col-lg-3 col-md-6 col-sm-6 col-sm-6'>
+                                            {relatedProducts.map(item => {
+                                                return <Product typeCol={true} product={item} key={item._id} />;
+                                            })}
+                                            {/* <div className='col-lg-3 col-md-6 col-sm-6 col-sm-6'>
                                                 <div className='product__item'>
                                                     <div className='product__item__pic set-bg'
                                                          data-setbg='img/product/product-1.jpg'>
@@ -270,13 +352,13 @@ export default function ProductDetail() {
                                                         </div>
                                                         <h5>$67.24</h5>
                                                         <div className='product__color__select'>
-                                                            <label for='pc-1'>
+                                                            <label htmlFor='pc-1'>
                                                                 <input type='radio' id='pc-1' />
                                                             </label>
-                                                            <label className='active black' for='pc-2'>
+                                                            <label className='active black' htmlFor='pc-2'>
                                                                 <input type='radio' id='pc-2' />
                                                             </label>
-                                                            <label className='grey' for='pc-3'>
+                                                            <label className='grey' htmlFor='pc-3'>
                                                                 <input type='radio' id='pc-3' />
                                                             </label>
                                                         </div>
@@ -309,13 +391,13 @@ export default function ProductDetail() {
                                                         </div>
                                                         <h5>$67.24</h5>
                                                         <div className='product__color__select'>
-                                                            <label for='pc-1'>
+                                                            <label htmlFor='pc-1'>
                                                                 <input type='radio' id='pc-1' />
                                                             </label>
-                                                            <label className='active black' for='pc-2'>
+                                                            <label className='active black' htmlFor='pc-2'>
                                                                 <input type='radio' id='pc-2' />
                                                             </label>
-                                                            <label className='grey' for='pc-3'>
+                                                            <label className='grey' htmlFor='pc-3'>
                                                                 <input type='radio' id='pc-3' />
                                                             </label>
                                                         </div>
@@ -348,13 +430,13 @@ export default function ProductDetail() {
                                                         </div>
                                                         <h5>$67.24</h5>
                                                         <div className='product__color__select'>
-                                                            <label for='pc-1'>
+                                                            <label htmlFor='pc-1'>
                                                                 <input type='radio' id='pc-1' />
                                                             </label>
-                                                            <label className='active black' for='pc-2'>
+                                                            <label className='active black' htmlFor='pc-2'>
                                                                 <input type='radio' id='pc-2' />
                                                             </label>
-                                                            <label className='grey' for='pc-3'>
+                                                            <label className='grey' htmlFor='pc-3'>
                                                                 <input type='radio' id='pc-3' />
                                                             </label>
                                                         </div>
@@ -387,19 +469,19 @@ export default function ProductDetail() {
                                                         </div>
                                                         <h5>$67.24</h5>
                                                         <div className='product__color__select'>
-                                                            <label for='pc-1'>
+                                                            <label htmlFor='pc-1'>
                                                                 <input type='radio' id='pc-1' />
                                                             </label>
-                                                            <label className='active black' for='pc-2'>
+                                                            <label className='active black' htmlFor='pc-2'>
                                                                 <input type='radio' id='pc-2' />
                                                             </label>
-                                                            <label className='grey' for='pc-3'>
+                                                            <label className='grey' htmlFor='pc-3'>
                                                                 <input type='radio' id='pc-3' />
                                                             </label>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                 </section>
@@ -414,7 +496,7 @@ export default function ProductDetail() {
 }
 
 export async function getServerSideProps(params) {
-    console.log(params);
+    // console.log(params);
     // Call an external API endpoint to get posts
 
 

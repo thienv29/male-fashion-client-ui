@@ -1,8 +1,14 @@
 import { useEffect, useState } from 'react';
-
+import { useRouter } from 'next/router'
 export default function Header() {
     // const [position, setPosition] = useState(window.pageYOffset)
     const [visibles, setVisibles] = useState(false);
+    const router = useRouter();
+    const [url, setUrl] = useState(null);
+    useEffect(() => {
+        setUrl(router.pathname);
+    }, [router]);
+
     useEffect(() => {
         const handleScroll = () => {
             let moving = window.pageYOffset;
@@ -16,7 +22,7 @@ export default function Header() {
     return (
         <header className='header'>
             <div className='header__top'
-                 style={visibles ? { height: 0, padding: '0px' } : { height: 'unset', padding: '10px 0' }}>
+                style={visibles ? { height: 0, padding: '0px' } : { height: 'unset', padding: '10px 0' }}>
                 <div className='container'>
                     <div className='row'>
                         <div className='col-lg-6 col-md-7'>
@@ -28,22 +34,22 @@ export default function Header() {
                             <div className='header__top__right'>
                                 <div className='header__top__links'>
                                     <a href='#'>Sign in</a>
-                                <div className="header__navbar-item header__navbar-user">
-                                        <img src="img/shopping-cart/cart-1.jpg" alt="" class="header__navbar-user-img" 
-                                        style={visibles ? { display: 'none' } : { }}></img>
-                                        <span class="header__navbar-user-name">Nguyễn Tuấn Hải</span>
-                                        <ul class="header__navbar-user-menu">
-                                            <li class="header__navbar-user-item">
+                                    <div className="header__navbar-item header__navbar-user">
+                                        <img src="img/shopping-cart/cart-1.jpg" alt="" className="header__navbar-user-img"
+                                            style={visibles ? { display: 'none' } : {}}></img>
+                                        <span className="header__navbar-user-name">Nguyễn Tuấn Hải</span>
+                                        <ul className="header__navbar-user-menu">
+                                            <li className="header__navbar-user-item">
                                                 <a href="/userprofile">My Account</a>
                                             </li>
-                                            <li class="header__navbar-user-item">
+                                            <li className="header__navbar-user-item">
                                                 <a href="/history-order">History Order</a>
                                             </li>
-                                            <li class="header__navbar-user-item header__navbar-user-item--separate">
+                                            <li className="header__navbar-user-item header__navbar-user-item--separate">
                                                 <a href="">Log Out</a>
                                             </li>
                                         </ul>
-                                </div>
+                                    </div>
                                 </div>
                                 <div className='header__top__hover'>
                                     <span>Usd <i className='arrow_carrot-down' /></span>
@@ -68,12 +74,12 @@ export default function Header() {
                         <nav className='header__menu mobile-menu'>
                             <ul>
                                 {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-                                <li className='active'><a href='/'>Home</a></li>
-                                <li><a href='/shop'>Shop</a></li>
-                                <li><a href='/about'>US</a>
+                                <li className={url === "/" ? "active" : ""}><a href='/'>Home</a></li>
+                                <li className={url === "/shop" ? "active" : ""}><a href='/shop'>Shop</a></li>
+                                <li className={url === "/about" ? "active" : "" || url === "/contact" ? "active" : ""}><a href='/about'>US</a>
                                     <ul className='dropdown'>
                                         <li className='active'><a href='/about'>About Us</a></li>
-                                        <li><a href='/contact'>Contact</a></li>
+                                        <li ><a href='/contact'>Contact</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -81,10 +87,10 @@ export default function Header() {
                     </div>
                     <div className='col-lg-4 col-md-3'>
                         <div className='header__nav__option'>
-                            <label for='search-input' href='#' className='search-switch'><img src='img/icon/search.png'
-                                                                                              alt='' /></label>
+                            <label htmlFor='search-input' href='#' className='search-switch'><img src='img/icon/search.png'
+                                alt='' /></label>
                             <input type='checkbox' hidden name='' className='search__input' id='search-input'></input>
-                            <label for='search-input' className='side__overlay'>
+                            <label htmlFor='search-input' className='side__overlay'>
 
                             </label>
                             <nav className='sidebar-option'>

@@ -1,9 +1,9 @@
 //image, name, rating, price
 
-export default function Product({ product }) {
+export default function Product({ product, typeCol }) {
     const { image, name, star, exportPrice, salePrice } = product;
     return (
-        <a className='col-lg-4 col-md-6 col-sm-6' href={`/${product._id}`}>
+        <a className={typeCol === true ? "col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals": "col-lg-4 col-md-6 col-sm-6"} href={`/${product._id}`}>
             <div className='product__item sale'>
                 <div className='product__item__pic set-bg' style={{ backgroundImage: `url(${image})` }}>
                     {salePrice > 0 ? <span className='label'>Sale</span> : ''}
