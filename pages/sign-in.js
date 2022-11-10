@@ -1,30 +1,44 @@
+import AuthService from '../services/auth.service';
+import { useDispatch } from "react-redux";
+import { setUserLogin } from "../store/feature/UserSlice";
+import { useRouter } from 'next/router'
+
+const dispatch = useDispatch();
+const router = useRouter();
+
 export default function Signin() {
+    const loginHandler = async (values) => {
+        const userResponse = await AuthService.login(values);
+
+        dispatch(setUserLogin(userResponse));
+        router.push('/');
+    };
+
     return (
 
         <>
             <div className='body-login'>
-
                 <div className='limiter'>
                     <div className='container-login100'>
                         <div className='wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54'>
-                            <form className='login100-form validate-form'>
+                            <form className='login100-form validate-form' onSubmit={loginHandler}>
                                 <div className='header__logo flex-center mb-4'>
                                     <a href='/'><img src='img/logo.png' alt='' /></a>
                                 </div>
                                 <h4 className='title-auth'>Sign in</h4>
 
                                 <div className='wrap-input100 validate-input m-b-23'
-                                     data-validate='Username is reauired'>
+                                    data-validate='Username is reauired'>
                                     <span className='label-input100'>Username</span>
                                     <input className='input100' type='text' name='username'
-                                           placeholder='Type your username' />
+                                        placeholder='Type your username' />
                                     <span className='focus-input100' />
                                 </div>
 
                                 <div className='wrap-input100 validate-input' data-validate='Password is required'>
                                     <span className='label-input100'>Password</span>
                                     <input className='input100' type='password' name='pass'
-                                           placeholder='Type your password' />
+                                        placeholder='Type your password' />
                                     <span className='focus-input100' />
                                 </div>
 
@@ -39,9 +53,9 @@ export default function Signin() {
                                 </div>
 
                                 <div className='txt1 text-center p-t-54 p-b-20'>
-                                <span>
-                                    Or Sign Up Using
-                                </span>
+                                    <span>
+                                        Or Sign Up Using
+                                    </span>
                                 </div>
 
                                 <div className='flex-c-m'>

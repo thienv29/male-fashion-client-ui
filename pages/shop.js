@@ -19,6 +19,7 @@ export default function Shop() {
     const [maxPage, setMaxPage] = useState(0);
 
 
+
     // let priceTo = document.getElementById('slider-range-value2').textContent;
 
     console.log(filterPrice)
@@ -56,8 +57,13 @@ export default function Shop() {
             page: curPage,
         });
         setProductsPagination(data.result.products);
-        setMaxPage(Math.floor((data.result.totalItem / data.result.products.length)) + 1);
-        console.log(data.result);
+        if ((data.result.totalItem % data.result.limit) == 0) {
+            setMaxPage(data.result.totalItem / data.result.limit);
+        }
+        else {
+            setMaxPage(Math.floor((data.result.totalItem / data.result.limit)) + 1);
+        }
+        // setMaxPage(Math.floor((data.result.totalItem / limit)) + 1);
     }
 
 
@@ -228,16 +234,16 @@ export default function Shop() {
                                         </div> */}
                                         <nav aria-label="Page navigation example">
                                             <ul className="pagination">
-                                                <li className={`page-item ${curPage == 1 ? 'disabled' : ''}`}  onClick={() => setCurPage(curPage -1)}>
+                                                <li className={`page-item ${curPage == 1 ? 'disabled' : ''}`} onClick={() => setCurPage(curPage - 1)}>
                                                     <a className="page-link" href="javascript:;" aria-label="Previous">
                                                         <span aria-hidden="true">&laquo;</span>
                                                         <span className="sr-only">Previous</span>
                                                     </a>
                                                 </li>
-                                                {curPage == 1 ? '' : <li className="page-item" ><a className="page-link" href="javascript:;"  onClick={() => setCurPage(curPage -1)}>{curPage - 1}</a></li>}
+                                                {curPage == 1 ? '' : <li className="page-item" ><a className="page-link" href="javascript:;" onClick={() => setCurPage(curPage - 1)}>{curPage - 1}</a></li>}
                                                 <li className="page-item active" ><a className="page-link" href="javascript:;">{curPage}</a></li>
-                                                {curPage + 1 == maxPage ? <li className="page-item" ><a className="page-link" href="javascript:;"  onClick={() => setCurPage(curPage + 1)}>{curPage + 1}</a></li> : ''}
-                                                <li className={`page-item ${curPage == maxPage ? 'disabled' : ''}`}   onClick={() => setCurPage(curPage  +1)}>
+                                                {curPage < maxPage ? <li className="page-item" ><a className="page-link" href="javascript:;" onClick={() => setCurPage(curPage + 1)}>{curPage + 1}</a></li> : ''}
+                                                <li className={`page-item ${curPage == maxPage ? 'disabled' : ''}`} onClick={() => setCurPage(curPage + 1)}>
                                                     <a className="page-link" href="javascript:;" aria-label="Next" >
                                                         <span aria-hidden="true">&raquo;</span>
                                                         <span className="sr-only">Next</span>
@@ -245,6 +251,7 @@ export default function Shop() {
                                                 </li>
                                             </ul>
                                         </nav>
+                                        {console.log(curPage, maxPage)}
                                     </div>
                                 </div>
                             </div>
