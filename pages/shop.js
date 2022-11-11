@@ -5,6 +5,8 @@ import CategoryService from '../services/category.service';
 import SizeService from '../services/size.service';
 import SupplierService from '../services/supplier.service';
 import ProductService from '../services/product.service';
+import WishlistService from '../services/wishlist.service';
+import { useSelector } from 'react-redux';
 
 export default function Shop() {
     const [categories, setCategories] = useState([]);
@@ -18,11 +20,12 @@ export default function Shop() {
     const [curPage, setCurPage] = useState(1);
     const [maxPage, setMaxPage] = useState(0);
 
+    const user = useSelector(state => state.user);
+
 
 
     // let priceTo = document.getElementById('slider-range-value2').textContent;
 
-    console.log(filterPrice)
 
     useEffect(() => {
         getCategories();
@@ -64,7 +67,8 @@ export default function Shop() {
             setMaxPage(Math.floor((data.result.totalItem / data.result.limit)) + 1);
         }
         // setMaxPage(Math.floor((data.result.totalItem / limit)) + 1);
-    }
+    };
+
 
 
     return (

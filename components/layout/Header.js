@@ -1,10 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
+import { useSelector, useDispatch } from 'react-redux';
+import { resetUserState } from '../../store/feature/UserSlice';
+
 export default function Header() {
     // const [position, setPosition] = useState(window.pageYOffset)
     const [visibles, setVisibles] = useState(false);
     const router = useRouter();
     const [url, setUrl] = useState(null);
+
+    const clientUser = useSelector((state) => state.user);
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        dispatch(resetUserState());
+    }
+
     useEffect(() => {
         setUrl(router.pathname);
     }, [router]);
@@ -32,12 +43,11 @@ export default function Header() {
                         </div>
                         <div className='col-lg-6 col-md-5'>
                             <div className='header__top__right'>
-                                <div className='header__top__links'>
-                                    <a href='#'>Sign in</a>
-                                    <div className="header__navbar-item header__navbar-user">
+                                <div className='header__top__links' style={{ marginRight: '4px' }}>
+                                    {clientUser.id != '' ? <div className="header__navbar-item header__navbar-user">
                                         <img src="img/shopping-cart/cart-1.jpg" alt="" className="header__navbar-user-img"
                                             style={visibles ? { display: 'none' } : {}}></img>
-                                        <span className="header__navbar-user-name">Nguyễn Tuấn Hải</span>
+                                        <span className="header__navbar-user-name">{clientUser.firstName}</span>
                                         <ul className="header__navbar-user-menu">
                                             <li className="header__navbar-user-item">
                                                 <a href="/userprofile">My Account</a>
@@ -46,18 +56,23 @@ export default function Header() {
                                                 <a href="/history-order">History Order</a>
                                             </li>
                                             <li className="header__navbar-user-item header__navbar-user-item--separate">
-                                                <a href="">Log Out</a>
+                                                <a href="" onClick={handleLogout}>Log Out</a>
                                             </li>
                                         </ul>
-                                    </div>
+                                    </div> : <>
+                                        <a href='/sign-in'>Sign in</a>
+                                        <a href='/sign-up'>Sign up</a>
+                                    </>}
+
                                 </div>
-                                <div className='header__top__hover'>
+                                {/* <div className='header__top__hover'>
                                     <span>Usd <i className='arrow_carrot-down' /></span>
                                     <ul>
-                                        <li><a href="/sign-in">Đăng nhập</a></li>
-                                        <li><a href="/sign-up">Đăng ký</a></li>
+                                        <li><a href="#">VND</a></li>
+                                        <li><a href="#">USD</a></li>
                                     </ul>
-                                </div>
+                                </div> */}
+
                             </div>
                         </div>
                     </div>
