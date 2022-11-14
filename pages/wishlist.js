@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Layout from '../components/layout';
+import WishlistItems from '../components/shared/wishlist-items';
 import WishlistService from '../services/wishlist.service';
 
 export default function Home() {
@@ -7,12 +8,19 @@ export default function Home() {
 
     useEffect(() => {
         getProducts();
-    });
+    }, []);
 
     const getProducts = async () => {
         const data = await WishlistService.getAll();
-        console.log(data);
+        setProducts(data.result);
     }
+    const deleteWishlist = useCallback(async (productId) => {
+        const wishList = products.find(e => e.product._id == productId);
+        const data = await WishlistService.delete(wishList._id);
+        getProducts();
+    });
+
+    console.log(products)
 
     return (
         <Layout>
@@ -46,90 +54,11 @@ export default function Home() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td className='product__wishlist__item'>
-                                                <div className='product__wishlist__item__pic'>
-                                                    <a href='#'>
-                                                        <img src='img/shopping-cart/cart-1.jpg' alt='' />
-                                                    </a>
-                                                </div>
-                                                <div className='product__wishlist__item__text'>
-                                                    <a href='#'>T-shirt Contrast Pocket</a>
-                                                </div>
-                                            </td>
-                                            <td className='wishlist__price'>$ 30.00</td>
-                                            <td>
-                                                <div>
-                                                    <div className='add__btn'>
-                                                        <a href='#'><i className='fa fa-cart-plus' /> Add to cart</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className='wishlist__close'><i className='fa fa-close' /></td>
-                                        </tr>
-                                        <tr>
-                                            <td className='product__wishlist__item'>
-                                                <div className='product__wishlist__item__pic'>
-                                                    <a href='#'>
-                                                        <img src='img/shopping-cart/cart-2.jpg' alt='' />
-                                                    </a>
-                                                </div>
-                                                <div className='product__wishlist__item__text'>
-                                                    <a href='#'>Diagonal Textured Cap</a>
-                                                </div>
-                                            </td>
-                                            <td className='wishlist__price'>$ 32.50</td>
-                                            <td>
-                                                <div>
-                                                    <div className='add__btn'>
-                                                        <a href='#'><i className='fa fa-cart-plus' /> Add to cart</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className='wishlist__close'><i className='fa fa-close' /></td>
-                                        </tr>
-                                        <tr>
-                                            <td className='product__wishlist__item'>
-                                                <div className='product__wishlist__item__pic'>
-                                                    <a href='#'>
-                                                        <img src='img/shopping-cart/cart-3.jpg' alt='' />
-                                                    </a>
-                                                </div>
-                                                <div className='product__wishlist__item__text'>
-                                                    <a href='#'>Basic Flowing Scarf</a>
-                                                </div>
-                                            </td>
-                                            <td className='wishlist__price'>$ 47.00</td>
-                                            <td>
-                                                <div>
-                                                    <div className='add__btn'>
-                                                        <a href='#'><i className='fa fa-cart-plus' /> Add to cart</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className='wishlist__close'><i className='fa fa-close' /></td>
-                                        </tr>
-                                        <tr>
-                                            <td className='product__wishlist__item'>
-                                                <div className='product__wishlist__item__pic'>
-                                                    <a href='#'>
-                                                        <img src='img/shopping-cart/cart-4.jpg' alt='' />
-                                                    </a>
-                                                </div>
-                                                <div className='product__wishlist__item__text'>
-                                                    <a href='#'>Basic Flowing Scarf</a>
-                                                </div>
-                                            </td>
-                                            <td className='wishlist__price'>$ 30.00</td>
-                                            <td>
-                                                <div>
-                                                    <div className='add__btn'>
-                                                        <a href='#'><i className='fa fa-cart-plus' /> Add to cart</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className='wishlist__close'><i className='fa fa-close' /></td>
-                                        </tr>
+                                        {products.map((item) => (
+
+                                            <WishlistItems deleteWishlist={deleteWishlist} product={item.product} key={item.product._id} />
+                                        ))}
+
                                     </tbody>
                                 </table>
                             </div>

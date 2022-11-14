@@ -114,7 +114,7 @@ export default function Shop() {
                                                         <div className='container mt-4'>
                                                             <div className='row'>
                                                                 <div className='col-sm-12'>
-                                                                    <input style={{ width: '100%' }} type="range" min="0" max="2000" class="form-range" value={filterPrice} id="customRange1" onChange={(e) => setFilterPrice(e.target.value)} />
+                                                                    <input style={{ width: '100%' }} type="range" min="0" max="2000" className="form-range" value={filterPrice} id="customRange1" onChange={(e) => setFilterPrice(e.target.value)} />
                                                                 </div>
                                                             </div>
                                                             {/* <div className='row slider-labels'>
@@ -255,7 +255,6 @@ export default function Shop() {
                                                 </li>
                                             </ul>
                                         </nav>
-                                        {console.log(curPage, maxPage)}
                                     </div>
                                 </div>
                             </div>

@@ -1,18 +1,21 @@
 //image, name, rating, price
 
+import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import WishlistService from "../../services/wishlist.service";
 
 export default function Product({ product, typeCol }) {
     const { _id, image, name, star, exportPrice, salePrice } = product;
     const user = useSelector((state) => state.user);
-
-
+    const router = useRouter();
     const handleAddWishlist = async () => {
         console.log('sss');
         const data = await WishlistService.create({ product: _id, customer: user.refId });
         console.log(data);
-        // return data;
+        return data;
+    }
+    const handlePickItem = () => {
+        router.push(`/${_id}`);
     }
 
     return (
@@ -23,8 +26,9 @@ export default function Product({ product, typeCol }) {
                     <ul className='product__hover'>
                         <li><div ><img src='img/icon/heart.png' alt='' onClick={handleAddWishlist} /></div></li>
                     </ul>
+                    <div onClick={handlePickItem} className="product__item__layer"></div>
                 </div>
-                <div className='product__item__text'>
+                <div className='product__item__text '>
                     <h6 className='multiLineLabel textMaxLine'>{name}</h6>
                     <a href='#' className='add-cart'>+ Add To Cart</a>
                     <div className='rating'>
