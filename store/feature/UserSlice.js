@@ -9,6 +9,8 @@ const initialState = {
     token: '',
     avatar: '',
     address: '',
+    phone: '',
+    email: '',
     role: '',
     refId: ''
 };
@@ -31,6 +33,8 @@ export const UserSlice = createSlice({
                 state.token = accessToken;
                 state.avatar = user.avatar;
                 state.address = user.address;
+                state.phone = user.phone;
+                state.email = user.email;
                 state.role = user.role;
                 state.refId = refId;
             }

@@ -8,12 +8,13 @@ export default function Product({ product, typeCol }) {
     const { _id, image, name, star, exportPrice, salePrice } = product;
     const user = useSelector((state) => state.user);
     const router = useRouter();
+
     const handleAddWishlist = async () => {
-        console.log('sss');
         const data = await WishlistService.create({ product: _id, customer: user.refId });
-        console.log(data);
         return data;
     }
+
+
     const handlePickItem = () => {
         router.push(`/${_id}`);
     }
@@ -30,7 +31,7 @@ export default function Product({ product, typeCol }) {
                 </div>
                 <div className='product__item__text '>
                     <h6 className='multiLineLabel textMaxLine'>{name}</h6>
-                    <a href='#' className='add-cart'>+ Add To Cart</a>
+                    <a href="" className='add-cart'>+ Add To Cart</a>
                     <div className='rating'>
                         <i className={1 <= star ? 'fa fa-star' : 'fa fa-star-o'} />
                         <i className={2 <= star ? 'fa fa-star' : 'fa fa-star-o'} />

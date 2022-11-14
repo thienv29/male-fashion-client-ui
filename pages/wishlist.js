@@ -20,7 +20,6 @@ export default function Home() {
         getProducts();
     });
 
-    console.log(products)
 
     return (
         <Layout>

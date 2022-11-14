@@ -12,7 +12,6 @@ const WishlistService = {
         return axiosClient.post('/wishlist/create', wishlist);
     },
     delete: (wishlistId) => {
-        console.log(wishlistId);
         return axiosClient.get(`/wishlist/delete/${wishlistId}`);
     }
 
