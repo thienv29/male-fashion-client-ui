@@ -7,7 +7,7 @@ import { setToken } from '../store/feature/UserSlice';
 import { notifyErrorMessage, notifyErrorSystem, notifySuccessMessage } from '../core/utils/notify-action';
 
 const configURL = {
-    baseURL: 'https://male-fashion-shop-api.run-ap-south1.goorm.io/api/v1',
+    baseURL: 'https://vps-male-fashion-hdihy.run.goorm.io/api/v1',
     urlAnonymous: [
         '/color/get-all',
         '/size/get-all',
