@@ -3,6 +3,9 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import ProductService from '../services/product.service';
 import Product from '../components/shared/product';
+import WishlistService from '../services/wishlist.service';
+import { useSelector } from 'react-redux';
+import CartService from '../services/cart_service';
 
 export default function ProductDetail() {
     const [relatedProducts, setRelatedProducts] = useState([]);
@@ -11,12 +14,15 @@ export default function ProductDetail() {
     const [colors, setColors] = useState([]);
     const [sizeSelected, setSizeSelected] = useState('');
     const [colorSelected, setColorSelected] = useState('');
+    const [mainImage, setMainImage] = useState('');
+    const [quantity, setQuantity] = useState(1);
+
     const router = useRouter();
     const { id } = router.query;
+    const user = useSelector((state) => state.user);
 
 
-    const { image, name, code, description, supplier, star, exportPrice, salePrice, listDetails } = product;
-    // console.log(supplier)
+    const { _id, image, name, code, description, supplier, star, exportPrice, salePrice, listDetails } = product;
 
     useEffect(() => {
         getRelatedProducts(id);
@@ -27,6 +33,7 @@ export default function ProductDetail() {
     useEffect(() => {
         standardDataColors();
         standardDataSizes();
+        setMainImage(image);
     }, [product])
 
 
@@ -73,6 +80,31 @@ export default function ProductDetail() {
         setColorSelected(id);
     }
 
+    const handleAddToCart = async () => {
+        if (validateProductDetail()) {
+            const productDetailCreated = listDetails.find(detail => (detail.size._id == sizeSelected && detail.color._id == colorSelected));
+            const data = {
+                productDetail: productDetailCreated._id,
+                customer: user.refId,
+                quantity
+            };
+            await CartService.create(data);
+        }
+
+    }
+
+    const handleAddWishlist = async () => {
+        const data = await WishlistService.create({ product: _id, customer: user.refId });
+        return data;
+    }
+
+    const validateProductDetail = () => {
+        if (sizeSelected == null || colorSelected == null) {
+            return false;
+        };
+        return true
+    }
+
     return (
         <>
             <Layout>
@@ -99,12 +131,12 @@ export default function ProductDetail() {
                                 <div className='row'>
                                     <div className='col-xs-12 col-sm-6 col-lg-6 col-md-6'>
                                         <div className='product-img-main'>
-                                            <img src={image} alt='' />
+                                            <img src={mainImage ? mainImage : ''} alt='' />
                                         </div>
                                         <div className='d-flex mt-2 product-img-container'>
                                             {listDetails ? listDetails.map((detail) => (
-                                                <div className=' product-img-child'>
-                                                    <img src={detail.image} alt='' />
+                                                <div key={detail._id} className=' product-img-child'>
+                                                    <img src={detail.image} alt='' onClick={() => setMainImage(detail.image)} />
                                                 </div>
                                             )) : ''}
 
@@ -122,34 +154,34 @@ export default function ProductDetail() {
                                             </div>
                                             &nbsp; | &nbsp;
                                             <div className='item-sku'>
-                                                NCC: 
+                                                NCC:
                                                 <span className='vendor'>
                                                     {supplier ? supplier.sortName : ''}
                                                 </span>
                                             </div>
                                             &nbsp; | &nbsp;
                                             <div className='rating'>
-                                                <i className='fa fa-star'></i>
-                                                <i className='fa fa-star'></i>
-                                                <i className='fa fa-star'></i>
-                                                <i className='fa fa-star'></i>
-                                                <i className='fa fa-star-o'></i>
+                                                <i className={1 <= star ? 'fa fa-star' : 'fa fa-star-o'} />
+                                                <i className={2 <= star ? 'fa fa-star' : 'fa fa-star-o'} />
+                                                <i className={3 <= star ? 'fa fa-star' : 'fa fa-star-o'} />
+                                                <i className={4 <= star ? 'fa fa-star' : 'fa fa-star-o'} />
+                                                <i className={5 <= star ? 'fa fa-star' : 'fa fa-star-o'} />
                                                 <span> - 5 Reviews</span>
                                             </div>
                                         </div>
                                         <div className='product__details__text'>
                                             <div className='d-flex justify-content-between'>
-                                                <h3 className='text-left'>$270.00 <span>70.00</span></h3>
+                                                <h3 className='text-left'>${salePrice == 0 ? exportPrice : salePrice} <span>${salePrice == 0 ? '' : exportPrice}</span></h3>
                                                 <div className=' text-left'>
-                                                    <a className=' size-heart-icon'><i className='fa fa-heart'></i> </a>
+                                                    <a className=' size-heart-icon' onClick={handleAddWishlist}><i className='fa fa-heart'></i> </a>
                                                 </div>
                                             </div>
                                             <div className='product__details__option  text-left'>
                                                 <div className='product__details__option__size mb-3'>
                                                     <span>Size:</span>
                                                     {sizes ? sizes.map((detail) => (
-                                                        <label htmlFor={detail.name} className={sizeSelected == detail._id ? 'active' : ''} onClick={() => handleClickSize(detail._id)}>{detail.name}
-                                                            <input type='radio' name='size' id={detail.name} value={detail._id} />
+                                                        <label key={detail._id} htmlFor={detail.name} className={sizeSelected == detail._id ? 'active' : ''} onClick={() => handleClickSize(detail._id)}>{detail.name}
+                                                            <input type='radio' name='size' id={detail.name} defaultValue={detail._id} />
                                                         </label>
                                                     )) : ''}
                                                     {/* <label htmlFor='xxl'>xxl
@@ -168,8 +200,8 @@ export default function ProductDetail() {
                                                 <div className='product__details__option__color'>
                                                     <span>Color:</span>
                                                     {colors ? colors.map((detail) => (
-                                                        <label style={{ backgroundColor: detail.code }} htmlFor={detail.name} onClick={() => handleClickColor(detail._id)}>
-                                                            <input type='radio' name='color' id={detail.name} value={detail._id} />
+                                                        <label key={detail._id} style={{ backgroundColor: detail.code }} htmlFor={detail.name} onClick={() => handleClickColor(detail._id)}>
+                                                            <input type='radio' name='color' id={detail.name} defaultValue={detail._id} />
                                                         </label>
                                                     )) : ''}
                                                     {/* <label className='c-1' htmlFor='sp-1'>
@@ -192,10 +224,10 @@ export default function ProductDetail() {
                                             </div>
                                             <p className='text-left'>{description}</p>
                                             <div className='product__details__cart__option text-left'>
-                                                <a href='#' className='primary-btn mr-3'>add to cart</a>
+                                                <button onClick={handleAddToCart} className='primary-btn mr-3'>add to cart</button>
                                                 <div className='quantity'>
                                                     <div className='pro-qty'>
-                                                        <input type='text' value='1' />
+                                                        <input type='number' onChange={(e) => setQuantity(e.target.value)} value={quantity} />
                                                     </div>
                                                 </div>
                                             </div>
@@ -224,56 +256,7 @@ export default function ProductDetail() {
                                             <div className='tab-content'>
                                                 <div className='tab-pane active' id='tabs-5' role='tabpanel'>
                                                     <div className='product__details__tab__content'>
-                                                        <p className='note'>Nam tempus turpis at metus scelerisque
-                                                            placerat nulla deumantos
-                                                            solicitud felis. Pellentesque diam dolor, elementum etos
-                                                            lobortis des mollis
-                                                            ut risus. Sedcus faucibus an sullamcorper mattis drostique
-                                                            des commodo
-                                                            pharetras loremos.</p>
-                                                        <div className='product__details__tab__content__item'>
-                                                            <h5>Products Infomation</h5>
-                                                            <p>A Pocket PC is a handheld computer, which features many
-                                                                of the same
-                                                                capabilities as a modern PC. These handy little devices
-                                                                allow
-                                                                individuals to retrieve and store e-mail messages,
-                                                                create a contact
-                                                                file, coordinate appointments, surf the internet,
-                                                                exchange text messages
-                                                                and more. Every product that is labeled as a Pocket PC
-                                                                must be
-                                                                accompanied with specific software to operate the unit
-                                                                and must feature
-                                                                a touchscreen and touchpad.</p>
-                                                            <p>As is the case with any new technology product, the cost
-                                                                of a Pocket PC
-                                                                was substantial during it’s early release. For
-                                                                approximately $700.00,
-                                                                consumers could purchase one of top-of-the-line Pocket
-                                                                PCs in 2003.
-                                                                These days, customers are finding that prices have
-                                                                become much more
-                                                                reasonable now that the newness is wearing off. For
-                                                                approximately
-                                                                $350.00, a new Pocket PC can now be purchased.</p>
-                                                        </div>
-                                                        <div className='product__details__tab__content__item'>
-                                                            <h5>Material used</h5>
-                                                            <p>Polyester is deemed lower quality due to its none natural
-                                                                quality’s. Made
-                                                                from synthetic materials, not natural like wool.
-                                                                Polyester suits become
-                                                                creased easily and are known for not being breathable.
-                                                                Polyester suits
-                                                                tend to have a shine to them compared to wool and cotton
-                                                                suits, this can
-                                                                make the suit look cheap. The texture of velvet is
-                                                                luxurious and
-                                                                breathable. Velvet is a great choice for dinner party
-                                                                jacket and can be
-                                                                worn all year round.</p>
-                                                        </div>
+                                                        <p className='note'>{description}</p>
                                                     </div>
                                                 </div>
                                                 <div className='tab-pane' id='tabs-6' role='tabpanel'>
@@ -326,162 +309,6 @@ export default function ProductDetail() {
                                             {relatedProducts.map(item => {
                                                 return <Product typeCol={true} product={item} key={item._id} />;
                                             })}
-                                            {/* <div className='col-lg-3 col-md-6 col-sm-6 col-sm-6'>
-                                                <div className='product__item'>
-                                                    <div className='product__item__pic set-bg'
-                                                         data-setbg='img/product/product-1.jpg'>
-                                                        <span className='label'>New</span>
-                                                        <ul className='product__hover'>
-                                                            <li><a href='#'><img src='img/icon/heart.png' alt='' /></a>
-                                                            </li>
-                                                            <li><a href='#'><img src='img/icon/compare.png' alt='' />
-                                                                <span>Compare</span></a></li>
-                                                            <li><a href='#'><img src='img/icon/search.png' alt='' /></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div className='product__item__text'>
-                                                        <h6>Piqué Biker Jacket</h6>
-                                                        <a href='#' className='add-cart'>+ Add To Cart</a>
-                                                        <div className='rating'>
-                                                            <i className='fa fa-star-o'></i>
-                                                            <i className='fa fa-star-o'></i>
-                                                            <i className='fa fa-star-o'></i>
-                                                            <i className='fa fa-star-o'></i>
-                                                            <i className='fa fa-star-o'></i>
-                                                        </div>
-                                                        <h5>$67.24</h5>
-                                                        <div className='product__color__select'>
-                                                            <label htmlFor='pc-1'>
-                                                                <input type='radio' id='pc-1' />
-                                                            </label>
-                                                            <label className='active black' htmlFor='pc-2'>
-                                                                <input type='radio' id='pc-2' />
-                                                            </label>
-                                                            <label className='grey' htmlFor='pc-3'>
-                                                                <input type='radio' id='pc-3' />
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className='col-lg-3 col-md-6 col-sm-6 col-sm-6'>
-                                                <div className='product__item'>
-                                                    <div className='product__item__pic set-bg'
-                                                         data-setbg='img/product/product-1.jpg'>
-                                                        <span className='label'>New</span>
-                                                        <ul className='product__hover'>
-                                                            <li><a href='#'><img src='img/icon/heart.png' alt='' /></a>
-                                                            </li>
-                                                            <li><a href='#'><img src='img/icon/compare.png' alt='' />
-                                                                <span>Compare</span></a></li>
-                                                            <li><a href='#'><img src='img/icon/search.png' alt='' /></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div className='product__item__text'>
-                                                        <h6>Piqué Biker Jacket</h6>
-                                                        <a href='#' className='add-cart'>+ Add To Cart</a>
-                                                        <div className='rating'>
-                                                            <i className='fa fa-star-o'></i>
-                                                            <i className='fa fa-star-o'></i>
-                                                            <i className='fa fa-star-o'></i>
-                                                            <i className='fa fa-star-o'></i>
-                                                            <i className='fa fa-star-o'></i>
-                                                        </div>
-                                                        <h5>$67.24</h5>
-                                                        <div className='product__color__select'>
-                                                            <label htmlFor='pc-1'>
-                                                                <input type='radio' id='pc-1' />
-                                                            </label>
-                                                            <label className='active black' htmlFor='pc-2'>
-                                                                <input type='radio' id='pc-2' />
-                                                            </label>
-                                                            <label className='grey' htmlFor='pc-3'>
-                                                                <input type='radio' id='pc-3' />
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className='col-lg-3 col-md-6 col-sm-6 col-sm-6'>
-                                                <div className='product__item'>
-                                                    <div className='product__item__pic set-bg'
-                                                         data-setbg='img/product/product-1.jpg'>
-                                                        <span className='label'>New</span>
-                                                        <ul className='product__hover'>
-                                                            <li><a href='#'><img src='img/icon/heart.png' alt='' /></a>
-                                                            </li>
-                                                            <li><a href='#'><img src='img/icon/compare.png' alt='' />
-                                                                <span>Compare</span></a></li>
-                                                            <li><a href='#'><img src='img/icon/search.png' alt='' /></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div className='product__item__text'>
-                                                        <h6>Piqué Biker Jacket</h6>
-                                                        <a href='#' className='add-cart'>+ Add To Cart</a>
-                                                        <div className='rating'>
-                                                            <i className='fa fa-star-o'></i>
-                                                            <i className='fa fa-star-o'></i>
-                                                            <i className='fa fa-star-o'></i>
-                                                            <i className='fa fa-star-o'></i>
-                                                            <i className='fa fa-star-o'></i>
-                                                        </div>
-                                                        <h5>$67.24</h5>
-                                                        <div className='product__color__select'>
-                                                            <label htmlFor='pc-1'>
-                                                                <input type='radio' id='pc-1' />
-                                                            </label>
-                                                            <label className='active black' htmlFor='pc-2'>
-                                                                <input type='radio' id='pc-2' />
-                                                            </label>
-                                                            <label className='grey' htmlFor='pc-3'>
-                                                                <input type='radio' id='pc-3' />
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className='col-lg-3 col-md-6 col-sm-6 col-sm-6'>
-                                                <div className='product__item'>
-                                                    <div className='product__item__pic set-bg'
-                                                         data-setbg='img/product/product-1.jpg'>
-                                                        <span className='label'>New</span>
-                                                        <ul className='product__hover'>
-                                                            <li><a href='#'><img src='/img/icon/heart.png' alt='' /></a>
-                                                            </li>
-                                                            <li><a href='#'><img src='/img/icon/compare.png' alt='' />
-                                                                <span>Compare</span></a></li>
-                                                            <li><a href='#'><img src='/img/icon/search.png' alt='' /></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div className='product__item__text'>
-                                                        <h6>Piqué Biker Jacket</h6>
-                                                        <a href='#' className='add-cart'>+ Add To Cart</a>
-                                                        <div className='rating'>
-                                                            <i className='fa fa-star-o'></i>
-                                                            <i className='fa fa-star-o'></i>
-                                                            <i className='fa fa-star-o'></i>
-                                                            <i className='fa fa-star-o'></i>
-                                                            <i className='fa fa-star-o'></i>
-                                                        </div>
-                                                        <h5>$67.24</h5>
-                                                        <div className='product__color__select'>
-                                                            <label htmlFor='pc-1'>
-                                                                <input type='radio' id='pc-1' />
-                                                            </label>
-                                                            <label className='active black' htmlFor='pc-2'>
-                                                                <input type='radio' id='pc-2' />
-                                                            </label>
-                                                            <label className='grey' htmlFor='pc-3'>
-                                                                <input type='radio' id='pc-3' />
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> */}
                                         </div>
                                     </div>
                                 </section>

@@ -6,6 +6,9 @@ const AuthService = {
     login: (user) => {
         return axiosClient.post('/auth/login', user);
     },
+    register: (user) => {
+        return axiosClient.post('/auth/register', user);
+    },
 
     refreshToken: () => {
         return axios.post(`/auth/refresh-token`, {}, {
@@ -17,6 +20,7 @@ const AuthService = {
             paramsSerializer: params => querystring.stringify(params),
         });
     },
+
 
 };
 export default AuthService;

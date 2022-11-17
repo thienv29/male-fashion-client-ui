@@ -1,19 +1,37 @@
 //image, name, rating, price
 
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import WishlistService from "../../services/wishlist.service";
+
 export default function Product({ product, typeCol }) {
-    const { image, name, star, exportPrice, salePrice } = product;
+    const { _id, image, name, star, exportPrice, salePrice } = product;
+    const user = useSelector((state) => state.user);
+    const router = useRouter();
+
+    const handleAddWishlist = async () => {
+        const data = await WishlistService.create({ product: _id, customer: user.refId });
+        return data;
+    }
+
+
+    const handlePickItem = () => {
+        router.push(`/${_id}`);
+    }
+
     return (
-        <a className={typeCol === true ? "col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals": "col-lg-4 col-md-6 col-sm-6"} href={`/${product._id}`}>
+        <div className={typeCol === true ? "col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals" : "col-lg-4 col-md-6 col-sm-6"} >
             <div className='product__item sale'>
                 <div className='product__item__pic set-bg' style={{ backgroundImage: `url(${image})` }}>
                     {salePrice > 0 ? <span className='label'>Sale</span> : ''}
                     <ul className='product__hover'>
-                        <li><a href='#'><img src='img/icon/heart.png' alt='' /></a></li>
+                        <li><div ><img src='img/icon/heart.png' alt='' onClick={handleAddWishlist} /></div></li>
                     </ul>
+                    <div onClick={handlePickItem} className="product__item__layer"></div>
                 </div>
-                <div className='product__item__text'>
+                <div className='product__item__text '>
                     <h6 className='multiLineLabel textMaxLine'>{name}</h6>
-                    <a href='#' className='add-cart'>+ Add To Cart</a>
+                    <a href="" className='add-cart'>+ Add To Cart</a>
                     <div className='rating'>
                         <i className={1 <= star ? 'fa fa-star' : 'fa fa-star-o'} />
                         <i className={2 <= star ? 'fa fa-star' : 'fa fa-star-o'} />
@@ -24,6 +42,6 @@ export default function Product({ product, typeCol }) {
                     <h5>${salePrice > 0 ? salePrice : exportPrice}</h5>
                 </div>
             </div>
-        </a>
+        </div>
     );
 }
