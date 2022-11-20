@@ -4,9 +4,11 @@ export default function Home() {
     const defaultBtn = document.getElementById('default-btn');
     const customBtn = document.querySelector('#custom-btn');
     const img = document.querySelector('.image img');
+
     function defaultBtnActive() {
         defaultBtn.click();
     }
+
     return (
         <Layout>
             <section className='breadcrumb-option'>

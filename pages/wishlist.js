@@ -13,7 +13,7 @@ export default function Home() {
     const getProducts = async () => {
         const data = await WishlistService.getAll();
         setProducts(data.result);
-    }
+    };
     const deleteWishlist = useCallback(async (productId) => {
         const wishList = products.find(e => e.product._id == productId);
         const data = await WishlistService.delete(wishList._id);
@@ -46,17 +46,18 @@ export default function Home() {
                             <div className='shopping__wishlist__table'>
                                 <table>
                                     <thead>
-                                        <tr>
-                                            <th>Product</th>
-                                            <th>Price</th>
-                                            <th />
-                                        </tr>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th />
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        {products.map((item) => (
+                                    {products.map((item) => (
 
-                                            <WishlistItems deleteWishlist={deleteWishlist} product={item.product} key={item.product._id} />
-                                        ))}
+                                        <WishlistItems deleteWishlist={deleteWishlist} product={item.product}
+                                                       key={item.product._id} />
+                                    ))}
 
                                     </tbody>
                                 </table>

@@ -13,7 +13,7 @@ const CartService = {
     },
     delete: (cartId) => {
         return axiosClient.get(`/cart/delete/${cartId}`);
-    }
+    },
 
 
 };

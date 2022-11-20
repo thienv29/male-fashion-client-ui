@@ -2,19 +2,52 @@ import { useEffect, useState } from 'react';
 import Layout from '../components/layout';
 import CartItems from '../components/shared/cart-items';
 import CartService from '../services/cart_service';
+import { useDispatch } from 'react-redux';
+import { setNumberOfCart, setTotalPriceOfCart } from '../store/feature/UserSlice';
+import VoucherService from '../services/voucher.service';
+import { createNotification, notifySuccessMessage } from '../core/utils/notify-action';
 
 export default function Cart() {
     const [itemsCart, setItemsCart] = useState([]);
+    const [total, setTotal] = useState(0);
+    const [code, setCode] = useState('');
+    const [voucher, setVoucher] = useState({});
+    const dispatch = useDispatch();
 
     useEffect(() => {
         getItemsCart();
-    }, [])
+    }, []);
 
     const getItemsCart = async () => {
         const data = await CartService.getAll();
-        setItemsCart(data.result);
-    }
+        if (data.result) {
+            const dataCreated = data.result || [];
+            setItemsCart(dataCreated);
+            let totalCreated = 0;
+            dataCreated.forEach(cart => {
+                const { productDetail } = cart;
+                const total = (productDetail.salePrice > 0 ? productDetail.salePrice : productDetail.exportPrice) * cart.quantity;
+                totalCreated += total;
+            });
+            setTotal(totalCreated);
+            dispatch(setNumberOfCart(dataCreated.length));
+            dispatch(setTotalPriceOfCart(totalCreated));
+        }
+    };
 
+    const handleApproveVoucher = async () => {
+        const data = await VoucherService.getAll();
+        const vouchers = data.result || [];
+        vouchers.forEach((voucherCreated) => {
+            if(code === voucherCreated.code ){
+                setVoucher(voucherCreated);
+            }
+        });
+
+    }
+    const testNoti = () => {
+        notifySuccessMessage('info')
+    }
 
 
     return (
@@ -42,17 +75,17 @@ export default function Cart() {
                             <div className='shopping__cart__table'>
                                 <table>
                                     <thead>
-                                        <tr>
-                                            <th>Product</th>
-                                            <th>Quantity</th>
-                                            <th>Total</th>
-                                            <th />
-                                        </tr>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                        <th />
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        {itemsCart.map((item) => (
-                                            <CartItems key={item._id} itemCart={item} getItemsCart={getItemsCart} />
-                                        ))}
+                                    {itemsCart.map((item) => (
+                                        <CartItems key={item._id} itemCart={item} getItemsCart={getItemsCart} />
+                                    ))}
                                     </tbody>
                                 </table>
                             </div>
@@ -64,24 +97,26 @@ export default function Cart() {
                                 </div>
                                 <div className='col-lg-6 col-md-6 col-sm-6'>
                                     <div className='continue__btn update__btn'>
-                                        <a href='#'><i className='fa fa-spinner' /> Update cart</a>
+                                        <button className='primary-btn' onClick={getItemsCart}><i
+                                            className='fa fa-spinner' /> Update cart
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className='col-lg-4'>
                             <div className='cart__discount'>
-                                <h6>Discount codes</h6>
+                                <h6 >Discount codes</h6>
                                 <form action='#'>
-                                    <input type='text' placeholder='Coupon code' defaultValue="" />
-                                    <button type='submit'>Apply</button>
+                                    <input type='text' placeholder='Coupon code' defaultValue='' value={code}
+                                           onChange={(e) => setCode(e.target.value)} />
+                                    <button type='submit' onClick={handleApproveVoucher}>Apply</button>
                                 </form>
                             </div>
                             <div className='cart__total'>
                                 <h6>Cart total</h6>
                                 <ul>
-                                    <li>Subtotal <span>$ 169.50</span></li>
-                                    <li>Total <span>$ 169.50</span></li>
+                                    <li>Total <span>$ {total}</span></li>
                                 </ul>
                                 <a href='/check-out' className='primary-btn'>Proceed to checkout</a>
                             </div>

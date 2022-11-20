@@ -12,7 +12,10 @@ const initialState = {
     phone: '',
     email: '',
     role: '',
-    refId: ''
+    refId: '',
+
+    numberOfCart: 0,
+    totalPriceOfCart: 0
 };
 
 export const UserSlice = createSlice({
@@ -43,13 +46,23 @@ export const UserSlice = createSlice({
         setToken: (state, action) => {
             state.token = action.payload.newAccessToken;
         },
+        setNumberOfCart: (state, action) => {
+            state.numberOfCart = action.payload;
+        },
+        setTotalPriceOfCart: (state, action) => {
+            state.totalPriceOfCart = action.payload;
+        },
+        resetCart: (state) => {
+            state.numberOfCart = 0;
+            state.totalPriceOfCart = 0;
+        },
 
-        resetUserState: (state) => initialState
+        resetUserState: (state) => initialState,
 
-    }
+    },
 });
 
 // Action creators are generated for each case reducer function
-export const { setUser, setUserLogin, setToken, resetUserState } = UserSlice.actions;
+export const { setUser, setUserLogin, setToken, resetUserState, setNumberOfCart, setTotalPriceOfCart, resetCart } = UserSlice.actions;
 
 export default UserSlice.reducer;

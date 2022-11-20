@@ -3,7 +3,6 @@ import SubHeader from './SubHeader';
 import Header from './Header';
 import Footer from './Footer';
 import Script from 'next/script';
-import { Toaster } from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 
 
@@ -30,7 +29,6 @@ export default function Layout({ children }) {
             <SubHeader />
             <Header />
             <main>{children}
-                <Script src='js/jquery.nice-select.min.js' strategy='lazyOnload' />
                 <Script src='js/bootstrap.min.js' strategy='lazyOnload' />
                 <Script src='js/jquery.nicescroll.min.js' strategy='lazyOnload' />
                 <Script src='js/jquery.magnific-popup.min.js' strategy='lazyOnload' />
@@ -40,9 +38,8 @@ export default function Layout({ children }) {
                 <Script src='js/price-filter.js' strategy='lazyOnload' />
                 <Script src='js/dataTables.min.js' strategy='lazyOnload' />
                 <Script src='/js/history-order.js' strategy='lazyOnload' />
-                </main>
+            </main>
             <Footer />
-            <Toaster containerClassName={'toast'} />
 
 
         </div>

@@ -1,6 +1,6 @@
 import Layout from '../components/layout';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ProductService from '../services/product.service';
 import Product from '../components/shared/product';
 import WishlistService from '../services/wishlist.service';
@@ -34,7 +34,7 @@ export default function ProductDetail() {
         standardDataColors();
         standardDataSizes();
         setMainImage(image);
-    }, [product])
+    }, [product]);
 
 
     const standardDataColors = () => {
@@ -42,43 +42,45 @@ export default function ProductDetail() {
         if (listDetails) {
             listDetails.forEach(detail => {
                 if (colorsCreated.findIndex(item => item._id == detail.color._id) == -1) {
-                    colorsCreated.push(detail.color)
-                };
+                    colorsCreated.push(detail.color);
+                }
+                ;
             });
             setColors(colorsCreated);
         }
-    }
+    };
 
     const standardDataSizes = () => {
         const sizesCreated = [];
         if (listDetails) {
             listDetails.forEach(detail => {
                 if (sizesCreated.findIndex(item => item._id == detail.size._id) == -1) {
-                    sizesCreated.push(detail.size)
-                };
+                    sizesCreated.push(detail.size);
+                }
+                ;
             });
             setSizes(sizesCreated);
         }
-    }
+    };
 
     const getProductById = async () => {
         const data = await ProductService.getById(id);
         const product = data.result;
         setProduct(product);
-    }
+    };
 
     const getRelatedProducts = async (id) => {
         const data = await ProductService.getRelatedProducts(id);
         setRelatedProducts(data.result);
-    }
+    };
 
     const handleClickSize = (id) => {
         setSizeSelected(id);
-    }
+    };
 
     const handleClickColor = (id) => {
         setColorSelected(id);
-    }
+    };
 
     const handleAddToCart = async () => {
         if (validateProductDetail()) {
@@ -86,24 +88,27 @@ export default function ProductDetail() {
             const data = {
                 productDetail: productDetailCreated._id,
                 customer: user.refId,
-                quantity
+                quantity,
             };
             await CartService.create(data);
+            // router.push('/cart')
+
         }
 
-    }
+    };
 
     const handleAddWishlist = async () => {
         const data = await WishlistService.create({ product: _id, customer: user.refId });
         return data;
-    }
+    };
 
     const validateProductDetail = () => {
         if (sizeSelected == null || colorSelected == null) {
             return false;
-        };
-        return true
-    }
+        }
+
+        return true;
+    };
 
     return (
         <>
@@ -136,7 +141,8 @@ export default function ProductDetail() {
                                         <div className='d-flex mt-2 product-img-container'>
                                             {listDetails ? listDetails.map((detail) => (
                                                 <div key={detail._id} className=' product-img-child'>
-                                                    <img src={detail.image} alt='' onClick={() => setMainImage(detail.image)} />
+                                                    <img src={detail.image} alt=''
+                                                         onClick={() => setMainImage(detail.image)} />
                                                 </div>
                                             )) : ''}
 
@@ -148,9 +154,9 @@ export default function ProductDetail() {
                                         <div className='d-flex mb-3'>
                                             <div className='item-sku'>
                                                 SKU: <span className='variant-sku' itemProp='sku'
-                                                    content='N102-S-W'>{listDetails ? listDetails.map((detail) =>
-                                                        (detail.color._id == colorSelected && detail.size._id == sizeSelected ? detail.code : '')
-                                                    ) : ''}</span>
+                                                           content='N102-S-W'>{listDetails ? listDetails.map((detail) =>
+                                                (detail.color._id == colorSelected && detail.size._id == sizeSelected ? detail.code : ''),
+                                            ) : ''}</span>
                                             </div>
                                             &nbsp; | &nbsp;
                                             <div className='item-sku'>
@@ -171,17 +177,22 @@ export default function ProductDetail() {
                                         </div>
                                         <div className='product__details__text'>
                                             <div className='d-flex justify-content-between'>
-                                                <h3 className='text-left'>${salePrice == 0 ? exportPrice : salePrice} <span>${salePrice == 0 ? '' : exportPrice}</span></h3>
+                                                <h3 className='text-left'>${salePrice == 0 ? exportPrice : salePrice}
+                                                    <span>${salePrice == 0 ? '' : exportPrice}</span></h3>
                                                 <div className=' text-left'>
-                                                    <a className=' size-heart-icon' onClick={handleAddWishlist}><i className='fa fa-heart'></i> </a>
+                                                    <a className=' size-heart-icon' onClick={handleAddWishlist}><i
+                                                        className='fa fa-heart'></i> </a>
                                                 </div>
                                             </div>
                                             <div className='product__details__option  text-left'>
                                                 <div className='product__details__option__size mb-3'>
                                                     <span>Size:</span>
                                                     {sizes ? sizes.map((detail) => (
-                                                        <label key={detail._id} htmlFor={detail.name} className={sizeSelected == detail._id ? 'active' : ''} onClick={() => handleClickSize(detail._id)}>{detail.name}
-                                                            <input type='radio' name='size' id={detail.name} defaultValue={detail._id} />
+                                                        <label key={detail._id} htmlFor={detail.name}
+                                                               className={sizeSelected == detail._id ? 'active' : ''}
+                                                               onClick={() => handleClickSize(detail._id)}>{detail.name}
+                                                            <input type='radio' name='size' id={detail.name}
+                                                                   defaultValue={detail._id} />
                                                         </label>
                                                     )) : ''}
                                                     {/* <label htmlFor='xxl'>xxl
@@ -200,8 +211,11 @@ export default function ProductDetail() {
                                                 <div className='product__details__option__color'>
                                                     <span>Color:</span>
                                                     {colors ? colors.map((detail) => (
-                                                        <label key={detail._id} style={{ backgroundColor: detail.code }} htmlFor={detail.name} onClick={() => handleClickColor(detail._id)}>
-                                                            <input type='radio' name='color' id={detail.name} defaultValue={detail._id} />
+                                                        <label key={detail._id} style={{ backgroundColor: detail.code }}
+                                                               htmlFor={detail.name}
+                                                               onClick={() => handleClickColor(detail._id)}>
+                                                            <input type='radio' name='color' id={detail.name}
+                                                                   defaultValue={detail._id} />
                                                         </label>
                                                     )) : ''}
                                                     {/* <label className='c-1' htmlFor='sp-1'>
@@ -224,10 +238,14 @@ export default function ProductDetail() {
                                             </div>
                                             <p className='text-left'>{description}</p>
                                             <div className='product__details__cart__option text-left'>
-                                                <button onClick={handleAddToCart} className='primary-btn mr-3'>add to cart</button>
+                                                <button onClick={handleAddToCart} className='primary-btn mr-3'>add to
+                                                    cart
+                                                </button>
                                                 <div className='quantity'>
                                                     <div className='pro-qty'>
-                                                        <input type='number' onChange={(e) => setQuantity(e.target.value)} value={quantity} />
+                                                        <input type='number'
+                                                               onChange={(e) => setQuantity(e.target.value)}
+                                                               value={quantity} />
                                                     </div>
                                                 </div>
                                             </div>
@@ -246,7 +264,7 @@ export default function ProductDetail() {
                                             <ul className='nav nav-tabs' role='tablist'>
                                                 <li className='nav-item'>
                                                     <a className='nav-link active' data-toggle='tab' href='#tabs-5'
-                                                        role='tab'>Description</a>
+                                                       role='tab'>Description</a>
                                                 </li>
                                                 <li className='nav-item'>
                                                     <a className='nav-link' data-toggle='tab' href='#tabs-6' role='tab'>Customer
