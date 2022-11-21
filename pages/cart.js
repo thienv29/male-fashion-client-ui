@@ -5,7 +5,7 @@ import CartService from '../services/cart_service';
 import { useDispatch } from 'react-redux';
 import { setNumberOfCart, setTotalPriceOfCart } from '../store/feature/UserSlice';
 import VoucherService from '../services/voucher.service';
-import { createNotification, notifySuccessMessage } from '../core/utils/notify-action';
+import { createNotification, notifyErrorMessage, notifySuccessMessage } from '../core/utils/notify-action';
 
 export default function Cart() {
     const [itemsCart, setItemsCart] = useState([]);
@@ -45,9 +45,14 @@ export default function Cart() {
         });
 
     }
-    const testNoti = () => {
-        notifySuccessMessage('info')
+    const handleCheckout = (e) => {
+        if (itemsCart.length === 0){
+            e.preventDefault()
+            notifyErrorMessage('Phải có tối thiểu một sản phẩm trong giỏ')
+        }
     }
+
+
 
 
     return (
@@ -118,7 +123,7 @@ export default function Cart() {
                                 <ul>
                                     <li>Total <span>$ {total}</span></li>
                                 </ul>
-                                <a href='/check-out' className='primary-btn'>Proceed to checkout</a>
+                                <a href='/check-out' onClick={(e) => handleCheckout(e)} className='primary-btn'>Proceed to checkout</a>
                             </div>
                         </div>
                     </div>

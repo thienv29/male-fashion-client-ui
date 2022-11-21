@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Layout from '../components/layout';
-import { PAYMENT_METHOD, SALE_ORDER__STATUS } from '../core/constant';
+import { PAYMENT_METHOD, SALE_ORDER_STATUS } from '../core/constant';
 import { useEffect, useState } from 'react';
 import CartService from '../services/cart_service';
 import randomString from '../core/utils/random-string.js';
 import SaleOrderService from '../services/saleOrder.service';
 import { resetCart } from '../store/feature/UserSlice';
 import { useRouter } from 'next/router';
+import { notifyErrorMessage } from '../core/utils/notify-action';
 
 export default function CheckOut() {
     const user = useSelector((state) => state.user);
@@ -66,8 +67,12 @@ export default function CheckOut() {
 
     };
 
-    const handlePlaceOrder = async () => {
-        event.preventDefault();
+    const handlePlaceOrder = async (e) => {
+        e.preventDefault()
+        if (listDetails.length === 0){
+            notifyErrorMessage('Phải có ít nhất 1 sản phẩm trong đơn hàng')
+            return
+        }
         const saleOrderFull = {
             customer: user.refId,
             firstName,
@@ -79,13 +84,13 @@ export default function CheckOut() {
             note,
             address,
             paymentMethod,
-            status: SALE_ORDER__STATUS.PENDING,
+            status: SALE_ORDER_STATUS.PENDING,
             listDetails,
         };
         const data = await SaleOrderService.create(saleOrderFull);
         if(data){
             dispatch(resetCart());
-            router.push('/history-order');
+            router.push(`/history-order-detail?id=${data.result._id}`);
         }
     };
 
@@ -110,7 +115,7 @@ export default function CheckOut() {
             <section className='checkout spad'>
                 <div className='container'>
                     <div className='checkout__form'>
-                        <form action='#'>
+                        <form noValidate>
                             <div className='row'>
                                 <div className='col-lg-8 col-md-6'>
                                     {/*<h6 className='coupon__code'><span className='icon_tag_alt' /> Have a*/}
@@ -206,7 +211,7 @@ export default function CheckOut() {
                                                 </select>
                                             </div>
                                         </div>
-                                        <button type='submit' className='site-btn' onClick={handlePlaceOrder}>PLACE
+                                        <button type='submit' className='site-btn' onClick={(e) =>handlePlaceOrder(e)}>PLACE
                                             ORDER
                                         </button>
                                     </div>

@@ -47,7 +47,7 @@ export default function Header() {
                                     {clientUser.id != '' ? <div className='header__navbar-item header__navbar-user'>
                                         <img src='img/shopping-cart/cart-1.jpg' alt=''
                                              className='header__navbar-user-img'
-                                             style={visibles ? { display: 'none' } : {}}></img>
+                                             style={visibles ? { display: 'none' } : {}} />
                                         <span className='header__navbar-user-name'>{clientUser.firstName}</span>
                                         <ul className='header__navbar-user-menu'>
                                             <li className='header__navbar-user-item'>
@@ -107,21 +107,22 @@ export default function Header() {
                             <label htmlFor='search-input' href='#' className='search-switch'><img
                                 src='img/icon/search.png'
                                 alt='' /></label>
-                            <input type='checkbox' hidden name='' className='search__input' id='search-input'/>
+                            <input type='checkbox' hidden name='' className='search__input' id='search-input' />
                             <label htmlFor='search-input' className='side__overlay'>
 
                             </label>
                             <nav className='sidebar-option'>
                                 <form>
                                     <div className='input__group'>
-                                        <input type='text' className='form__input'/>
-                                        <div><i className='fa fa-search' aria-hidden='true'/></div>
+                                        <input type='text' className='form__input' />
+                                        <div><i className='fa fa-search' aria-hidden='true' /></div>
                                     </div>
                                 </form>
                             </nav>
 
                             <a href='/wishlist'><img src='img/icon/heart.png' alt='' /></a>
-                            <a href='/cart'><img src='img/icon/cart.png' alt='' /> <span>{clientUser.numberOfCart}</span></a>
+                            <a href='/cart'><img src='img/icon/cart.png' alt='' />
+                                <span>{clientUser.numberOfCart}</span></a>
                             <div className='price'>${clientUser.totalPriceOfCart}</div>
                         </div>
                     </div>

@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import CartService from '../../services/cart_service';
+import { debounce } from 'lodash';
 
 const CartItems = ({ itemCart, getItemsCart }) => {
     const { _id, name, productDetail, quantity } = itemCart;
+    const [quantityInput, setQuantityInput] = useState(quantity);
+    const [quantityInputTmp, setQuantityInputTmp] = useState(quantity);
     const price = productDetail.salePrice > 0 ? productDetail.salePrice : productDetail.exportPrice;
-
-
+    const debouncedQuantity = useCallback(debounce((nextValue) => setQuantityInput(nextValue), 500), []);
+    useEffect(() => {
+        updateQuantity();
+    }, [quantityInput]);
+    const updateQuantity = async () => {
+        const data = await CartService.update({
+            _id,
+            name,
+            productDetail,
+            quantity: quantityInput,
+        });
+    };
+    const handleSetQuantity = (evt) => {
+        setQuantityInputTmp(evt.target.value);
+        debouncedQuantity(evt.target.value);
+    };
     const handleDeleteItemCart = async () => {
         await CartService.delete(_id);
         getItemsCart();
@@ -26,7 +43,8 @@ const CartItems = ({ itemCart, getItemsCart }) => {
             <td className='quantity__item'>
                 <div className='quantity'>
                     <div className='pro-qty-2'>
-                        <input type='number' defaultValue={quantity} />
+                        <input type='number' value={quantityInputTmp} onChange={handleSetQuantity}
+                               defaultValue={quantityInputTmp} />
                     </div>
                 </div>
             </td>

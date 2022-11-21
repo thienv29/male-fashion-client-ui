@@ -6,6 +6,7 @@ import Product from '../components/shared/product';
 import WishlistService from '../services/wishlist.service';
 import { useSelector } from 'react-redux';
 import CartService from '../services/cart_service';
+import { notifyErrorMessage } from '../core/utils/notify-action';
 
 export default function ProductDetail() {
     const [relatedProducts, setRelatedProducts] = useState([]);
@@ -91,7 +92,7 @@ export default function ProductDetail() {
                 quantity,
             };
             await CartService.create(data);
-            // router.push('/cart')
+            router.push('/cart')
 
         }
 
@@ -103,7 +104,8 @@ export default function ProductDetail() {
     };
 
     const validateProductDetail = () => {
-        if (sizeSelected == null || colorSelected == null) {
+        if (sizeSelected === '' || colorSelected === '') {
+            notifyErrorMessage('Vui lòng chọn size và màu sắc')
             return false;
         }
 

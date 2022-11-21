@@ -5,15 +5,27 @@ export const PAYMENT_METHOD = {
     BANKING: 'BANKING',
     COD: 'COD',
 };
-export const SALE_ORDER__STATUS = {
+export const SALE_ORDER_STATUS = {
     PENDING: 'PENDING',
     CONFIRM: 'CONFIRM',
     DELIVERING: 'DELIVERING',
-    COMPLETED: 'COMPLETED'
-}
+    COMPLETED: 'COMPLETED',
+    getNumber: (status) => {
+        switch (status) {
+            case 'PENDING':
+                return 0;
+            case 'CONFIRM':
+                return 1;
+            case 'DELIVERING':
+                return 2;
+            case 'COMPLETED':
+                return 3;
+        }
+    },
+};
 export const VOUCHER_STATUS = {
     NON_START: 'NON_START',
     HAPPENING: 'HAPPENING',
-    OVER: 'OVER'
+    OVER: 'OVER',
 };
 
