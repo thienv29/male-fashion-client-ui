@@ -9,6 +9,9 @@ const AuthService = {
     register: (user) => {
         return axiosClient.post('/auth/register', user);
     },
+    updateUser: (user) => {
+        return axiosClient.patch('/customer/update', user);
+    },
 
     refreshToken: () => {
         return axios.post(`/auth/refresh-token`, {}, {

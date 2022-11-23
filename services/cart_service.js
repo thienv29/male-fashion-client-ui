@@ -11,9 +11,12 @@ const CartService = {
     create: (cart) => {
         return axiosClient.post('/cart/create', cart);
     },
+    update: (cart) => {
+        return axiosClient.patch('/cart/update', cart);
+    },
     delete: (cartId) => {
         return axiosClient.get(`/cart/delete/${cartId}`);
-    }
+    },
 
 
 };

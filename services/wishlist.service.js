@@ -13,7 +13,7 @@ const WishlistService = {
     },
     delete: (wishlistId) => {
         return axiosClient.get(`/wishlist/delete/${wishlistId}`);
-    }
+    },
 
 
 };

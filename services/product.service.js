@@ -19,7 +19,7 @@ const ProductService = {
     },
     getProductByFilter: (filterModel) => {
         return axiosClient.post(`/product/get-filter`, filterModel);
-    }
+    },
 
 };
 export default ProductService;

@@ -1,13 +1,10 @@
 import AuthService from '../services/auth.service';
-import { useDispatch } from "react-redux";
-import { setUserLogin } from "../store/feature/UserSlice";
-import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux';
+import { setUserLogin } from '../store/feature/UserSlice';
+import { useRouter } from 'next/router';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { useState } from 'react';
-
-
 
 
 export default function Signin() {
@@ -32,11 +29,11 @@ export default function Signin() {
             <Formik
                 initialValues={{
                     email: '',
-                    password: ''
+                    password: '',
                 }}
                 validationSchema={Yup.object().shape({
                     email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-                    password: Yup.string().max(255).required('Password is required')
+                    password: Yup.string().max(255).required('Password is required'),
                 })}
                 onSubmit={loginHandler}
             >
@@ -52,22 +49,25 @@ export default function Signin() {
                                         <h4 className='title-auth'>Sign in</h4>
 
                                         <div className='wrap-input100 validate-input m-b-23'
-                                            data-validate='Username is reauired'>
+                                             data-validate='Username is reauired'>
                                             <span className='label-input100'>Username</span>
                                             <input className='input100' type='text' name='email'
-                                                placeholder='Type your email' value={values.email} onBlur={handleBlur}
-                                                onChange={handleChange} />
+                                                   placeholder='Type your email' value={values.email}
+                                                   onBlur={handleBlur}
+                                                   onChange={handleChange} />
                                             {errors.email && touched.email && (
                                                 <p style={{ color: 'red' }}>{errors.email}</p>
                                             )}
                                             <span className='focus-input100' />
                                         </div>
 
-                                        <div className='wrap-input100 validate-input' data-validate='Password is required'>
+                                        <div className='wrap-input100 validate-input'
+                                             data-validate='Password is required'>
                                             <span className='label-input100'>Password</span>
                                             <input className='input100' type='password' name='password'
-                                                placeholder='Type your password' value={values.password} onBlur={handleBlur}
-                                                onChange={handleChange} />
+                                                   placeholder='Type your password' value={values.password}
+                                                   onBlur={handleBlur}
+                                                   onChange={handleChange} />
                                             {errors.password && touched.password && (
                                                 <p style={{ color: 'red' }}>{errors.password}</p>
                                             )}
@@ -81,7 +81,8 @@ export default function Signin() {
                                         </div>
 
                                         <div className='container-login100-form-btn'>
-                                            <button type='submit' className='primary-btn w-100 text-center'>Sign in</button>
+                                            <button type='submit' className='primary-btn w-100 text-center'>Sign in
+                                            </button>
                                         </div>
 
                                         <div className='txt1 text-center p-t-54 p-b-20'>

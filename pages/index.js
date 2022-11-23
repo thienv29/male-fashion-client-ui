@@ -1,5 +1,5 @@
 import Layout from '../components/layout';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ProductService from '../services/product.service';
 import Product from '../components/shared/product';
 
@@ -13,7 +13,7 @@ export default function Home() {
     const getProductsFeature = async () => {
         const data = await ProductService.getFeature();
         setProducts(data.result);
-    }
+    };
 
     return (
         <Layout>
@@ -117,9 +117,9 @@ export default function Home() {
                             </div>
                         </div>
                         <div className='row product__filter'>
-                        {products.map(item => {
-                                            return <Product typeCol={true} product={item} key={item._id} />;
-                                        })}
+                            {products.map(item => {
+                                return <Product typeCol={true} product={item} key={item._id} />;
+                            })}
                             {/* <div className='col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals'>
                                 <div className='product__item'>
                                     <div className='product__item__pic set-bg' data-setbg='img/product/product-1.jpg'>
@@ -457,17 +457,17 @@ export default function Home() {
                             <div className='col-lg-8'>
                                 <div className='instagram__pic'>
                                     <div className='instagram__pic__item set-bg'
-                                        data-setbg='img/instagram/instagram-1.jpg' />
+                                         data-setbg='img/instagram/instagram-1.jpg' />
                                     <div className='instagram__pic__item set-bg'
-                                        data-setbg='img/instagram/instagram-2.jpg' />
+                                         data-setbg='img/instagram/instagram-2.jpg' />
                                     <div className='instagram__pic__item set-bg'
-                                        data-setbg='img/instagram/instagram-3.jpg' />
+                                         data-setbg='img/instagram/instagram-3.jpg' />
                                     <div className='instagram__pic__item set-bg'
-                                        data-setbg='img/instagram/instagram-4.jpg' />
+                                         data-setbg='img/instagram/instagram-4.jpg' />
                                     <div className='instagram__pic__item set-bg'
-                                        data-setbg='img/instagram/instagram-5.jpg' />
+                                         data-setbg='img/instagram/instagram-5.jpg' />
                                     <div className='instagram__pic__item set-bg'
-                                        data-setbg='img/instagram/instagram-6.jpg' />
+                                         data-setbg='img/instagram/instagram-6.jpg' />
                                 </div>
                             </div>
                             <div className='col-lg-4'>

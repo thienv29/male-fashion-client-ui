@@ -15,9 +15,8 @@ export default function Forget() {
 
                                 <div className='wrap-input100 validate-input m-b-23' data-validate='Email is required'>
                                     <span className='label-input100'>Email</span>
-                                    <input className='input100' type='text' name='email'
-                                           placeholder='Type your email'></input>
-                                    <span className='focus-input100'></span>
+                                    <input className='input100' type='text' name='email' placeholder='Type your email'/>
+                                    <span className='focus-input100'/>
                                 </div>
 
                                 <div className='container-login100-form-btn'>
@@ -41,11 +40,6 @@ export default function Forget() {
 }
 
 export async function getStaticProps() {
-    // Call an external API endpoint to get posts
-
-
-    // By returning { props: { posts } }, the Blog component
-    // will receive `posts` as a prop at build time
     return {
         props: {},
     };

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router'
-import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
 import { resetUserState } from '../../store/feature/UserSlice';
 
 export default function Header() {
@@ -14,7 +14,7 @@ export default function Header() {
 
     const handleLogout = () => {
         dispatch(resetUserState());
-    }
+    };
 
     useEffect(() => {
         setUrl(router.pathname);
@@ -33,7 +33,7 @@ export default function Header() {
     return (
         <header className='header'>
             <div className='header__top'
-                style={visibles ? { height: 0, padding: '0px' } : { height: 'unset', padding: '10px 0' }}>
+                 style={visibles ? { height: 0, padding: '0px' } : { height: 'unset', padding: '10px 0' }}>
                 <div className='container'>
                     <div className='row'>
                         <div className='col-lg-6 col-md-7'>
@@ -44,19 +44,20 @@ export default function Header() {
                         <div className='col-lg-6 col-md-5'>
                             <div className='header__top__right'>
                                 <div className='header__top__links' style={{ marginRight: '4px' }}>
-                                    {clientUser.id != '' ? <div className="header__navbar-item header__navbar-user">
-                                        <img src="img/shopping-cart/cart-1.jpg" alt="" className="header__navbar-user-img"
-                                            style={visibles ? { display: 'none' } : {}}></img>
-                                        <span className="header__navbar-user-name">{clientUser.firstName}</span>
-                                        <ul className="header__navbar-user-menu">
-                                            <li className="header__navbar-user-item">
-                                                <a href="/userprofile">My Account</a>
+                                    {clientUser.id != '' ? <div className='header__navbar-item header__navbar-user'>
+                                        <img src='img/shopping-cart/cart-1.jpg' alt=''
+                                             className='header__navbar-user-img'
+                                             style={visibles ? { display: 'none' } : {}} />
+                                        <span className='header__navbar-user-name'>{clientUser.firstName}</span>
+                                        <ul className='header__navbar-user-menu'>
+                                            <li className='header__navbar-user-item'>
+                                                <a href='/userprofile'>My Account</a>
                                             </li>
-                                            <li className="header__navbar-user-item">
-                                                <a href="/history-order">History Order</a>
+                                            <li className='header__navbar-user-item'>
+                                                <a href='/history-order'>History Order</a>
                                             </li>
-                                            <li className="header__navbar-user-item header__navbar-user-item--separate">
-                                                <a href="" onClick={handleLogout}>Log Out</a>
+                                            <li className='header__navbar-user-item header__navbar-user-item--separate'>
+                                                <a href='' onClick={handleLogout}>Log Out</a>
                                             </li>
                                         </ul>
                                     </div> : <>
@@ -89,12 +90,13 @@ export default function Header() {
                         <nav className='header__menu mobile-menu'>
                             <ul>
                                 {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-                                <li className={url === "/" ? "active" : ""}><a href='/'>Home</a></li>
-                                <li className={url === "/shop" ? "active" : ""}><a href='/shop'>Shop</a></li>
-                                <li className={url === "/about" ? "active" : "" || url === "/contact" ? "active" : ""}><a href='/about'>US</a>
+                                <li className={url === '/' ? 'active' : ''}><a href='/'>Home</a></li>
+                                <li className={url === '/shop' ? 'active' : ''}><a href='/shop'>Shop</a></li>
+                                <li className={url === '/about' ? 'active' : '' || url === '/contact' ? 'active' : ''}>
+                                    <a href='/about'>US</a>
                                     <ul className='dropdown'>
                                         <li className='active'><a href='/about'>About Us</a></li>
-                                        <li ><a href='/contact'>Contact</a></li>
+                                        <li><a href='/contact'>Contact</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -102,24 +104,26 @@ export default function Header() {
                     </div>
                     <div className='col-lg-4 col-md-3'>
                         <div className='header__nav__option'>
-                            <label htmlFor='search-input' href='#' className='search-switch'><img src='img/icon/search.png'
+                            <label htmlFor='search-input' href='#' className='search-switch'><img
+                                src='img/icon/search.png'
                                 alt='' /></label>
-                            <input type='checkbox' hidden name='' className='search__input' id='search-input'></input>
+                            <input type='checkbox' hidden name='' className='search__input' id='search-input' />
                             <label htmlFor='search-input' className='side__overlay'>
 
                             </label>
                             <nav className='sidebar-option'>
                                 <form>
                                     <div className='input__group'>
-                                        <input type='text' className='form__input'></input>
-                                        <div><i className='fa fa-search' aria-hidden='true'></i></div>
+                                        <input type='text' className='form__input' />
+                                        <div><i className='fa fa-search' aria-hidden='true' /></div>
                                     </div>
                                 </form>
                             </nav>
 
                             <a href='/wishlist'><img src='img/icon/heart.png' alt='' /></a>
-                            <a href='/cart'><img src='img/icon/cart.png' alt='' /> <span>0</span></a>
-                            <div className='price'>$0.00</div>
+                            <a href='/cart'><img src='img/icon/cart.png' alt='' />
+                                <span>{clientUser.numberOfCart}</span></a>
+                            <div className='price'>${clientUser.totalPriceOfCart}</div>
                         </div>
                     </div>
                 </div>
