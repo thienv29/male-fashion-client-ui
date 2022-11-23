@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import CartService from '../../services/cart_service';
 import { debounce } from 'lodash';
 
-const CartItems = ({ itemCart, getItemsCart }) => {
+const CartItems = ({ itemCart, getItemsCart, saveComplete }) => {
     const { _id, name, productDetail, quantity } = itemCart;
     const [quantityInput, setQuantityInput] = useState(quantity);
     const [quantityInputTmp, setQuantityInputTmp] = useState(quantity);
@@ -18,6 +18,7 @@ const CartItems = ({ itemCart, getItemsCart }) => {
             productDetail,
             quantity: quantityInput,
         });
+        saveComplete()
     };
     const handleSetQuantity = (evt) => {
         setQuantityInputTmp(evt.target.value);

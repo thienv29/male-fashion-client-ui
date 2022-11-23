@@ -3,6 +3,28 @@ import SaleOrderService from '../services/saleOrder.service';
 import { SALE_ORDER_STATUS } from '../core/constant';
 
 export default function HistoryOrderDetail({ saleOrderFull, total }) {
+    const handleCancelOrder = async () => {
+        const dataRequest = {
+            id: saleOrderFull._id,
+            canceled: true,
+            activeStep:0
+        }
+        const data = await SaleOrderService.updateStatus(dataRequest);
+        if (data.result){
+            window.location.reload()
+        }
+    }
+    const handleCompleteOrder = async() => {
+        const dataRequest = {
+            id: saleOrderFull._id,
+            canceled: false,
+            activeStep:3
+        }
+        const data = await SaleOrderService.updateStatus(dataRequest);
+        if (data.result){
+            window.location.reload()
+        }
+    }
     return (
         <Layout>
             {saleOrderFull ?
@@ -233,6 +255,11 @@ export default function HistoryOrderDetail({ saleOrderFull, total }) {
                                                 </address>
                                             </div>
                                         </div>
+                                        {saleOrderFull.status == SALE_ORDER_STATUS.PENDING ?
+                                            <button className={'btn-danger mt-2 w-100'} onClick={handleCancelOrder}>Cancel order</button> : ''}
+                                        {saleOrderFull.status == SALE_ORDER_STATUS.DELIVERING ?
+                                            <button className={'primary-btn mt-2 w-100'} onClick={handleCompleteOrder}>Received the
+                                                goods</button> : ''}
                                     </div>
                                 </div>
                             </div>

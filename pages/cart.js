@@ -89,7 +89,7 @@ export default function Cart() {
                                     </thead>
                                     <tbody>
                                     {itemsCart.map((item) => (
-                                        <CartItems key={item._id} itemCart={item} getItemsCart={getItemsCart} />
+                                        <CartItems key={item._id} itemCart={item} saveComplete={getItemsCart} getItemsCart={getItemsCart} />
                                     ))}
                                     </tbody>
                                 </table>

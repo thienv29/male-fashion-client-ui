@@ -17,6 +17,9 @@ const SaleOrderService = {
     delete: (saleOrderId) => {
         return axiosClient.get(`/saleOrder/delete/${saleOrderId}`);
     },
+    updateStatus: (object) => {
+        return axiosClient.post('/saleOrder/update-status', object);
+    },
 
 
 };

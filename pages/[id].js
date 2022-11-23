@@ -152,110 +152,87 @@ export default function ProductDetail() {
 
                                     </div>
                                     <div className='col-xs-12 col-sm-6 col-lg-6 col-md-6'>
-                                        <h1 className=''>{name}</h1>
-                                        <div className='d-flex mb-3'>
-                                            <div className='item-sku'>
-                                                SKU: <span className='variant-sku' itemProp='sku'
-                                                           content='N102-S-W'>{listDetails ? listDetails.map((detail) =>
-                                                (detail.color._id == colorSelected && detail.size._id == sizeSelected ? detail.code : ''),
-                                            ) : ''}</span>
-                                            </div>
-                                            &nbsp; | &nbsp;
-                                            <div className='item-sku'>
-                                                NCC:
-                                                <span className='vendor'>
+                                        <div>
+                                            <h1 className=''>{name}</h1>
+                                            <div className='d-flex mb-3'>
+                                                <div className='item-sku'>
+                                                    SKU: <span className='variant-sku' itemProp='sku'
+                                                               content='N102-S-W'>{listDetails ? listDetails.map((detail) =>
+                                                    (detail.color._id == colorSelected && detail.size._id == sizeSelected ? detail.code : ''),
+                                                ) : ''}</span>
+                                                </div>
+                                                &nbsp; | &nbsp;
+                                                <div className='item-sku'>
+                                                    NCC:
+                                                    <span className='vendor'>
                                                     {supplier ? supplier.sortName : ''}
                                                 </span>
-                                            </div>
-                                            &nbsp; | &nbsp;
-                                            <div className='rating'>
-                                                <i className={1 <= star ? 'fa fa-star' : 'fa fa-star-o'} />
-                                                <i className={2 <= star ? 'fa fa-star' : 'fa fa-star-o'} />
-                                                <i className={3 <= star ? 'fa fa-star' : 'fa fa-star-o'} />
-                                                <i className={4 <= star ? 'fa fa-star' : 'fa fa-star-o'} />
-                                                <i className={5 <= star ? 'fa fa-star' : 'fa fa-star-o'} />
-                                                <span> - 5 Reviews</span>
-                                            </div>
-                                        </div>
-                                        <div className='product__details__text'>
-                                            <div className='d-flex justify-content-between'>
-                                                <h3 className='text-left'>${salePrice == 0 ? exportPrice : salePrice}
-                                                    <span>${salePrice == 0 ? '' : exportPrice}</span></h3>
-                                                <div className=' text-left'>
-                                                    <a className=' size-heart-icon' onClick={handleAddWishlist}><i
-                                                        className='fa fa-heart'></i> </a>
+                                                </div>
+                                                &nbsp; | &nbsp;
+                                                <div className='rating'>
+                                                    <i className={1 <= star ? 'fa fa-star' : 'fa fa-star-o'} />
+                                                    <i className={2 <= star ? 'fa fa-star' : 'fa fa-star-o'} />
+                                                    <i className={3 <= star ? 'fa fa-star' : 'fa fa-star-o'} />
+                                                    <i className={4 <= star ? 'fa fa-star' : 'fa fa-star-o'} />
+                                                    <i className={5 <= star ? 'fa fa-star' : 'fa fa-star-o'} />
+                                                    <span> - 5 Reviews</span>
                                                 </div>
                                             </div>
-                                            <div className='product__details__option  text-left'>
-                                                <div className='product__details__option__size mb-3'>
-                                                    <span>Size:</span>
-                                                    {sizes ? sizes.map((detail) => (
-                                                        <label key={detail._id} htmlFor={detail.name}
-                                                               className={sizeSelected == detail._id ? 'active' : ''}
-                                                               onClick={() => handleClickSize(detail._id)}>{detail.name}
-                                                            <input type='radio' name='size' id={detail.name}
-                                                                   defaultValue={detail._id} />
-                                                        </label>
-                                                    )) : ''}
-                                                    {/* <label htmlFor='xxl'>xxl
-                                                        <input type='radio' id='xxl' />
-                                                    </label>
-                                                    <label className='active' htmlFor='xl'>xl
-                                                        <input type='radio' id='xl' />
-                                                    </label>
-                                                    <label htmlFor='l'>l
-                                                        <input type='radio' id='l' />
-                                                    </label>
-                                                    <label htmlFor='sm'>s
-                                                        <input type='radio' id='sm' />
-                                                    </label> */}
-                                                </div>
-                                                <div className='product__details__option__color'>
-                                                    <span>Color:</span>
-                                                    {colors ? colors.map((detail) => (
-                                                        <label key={detail._id} style={{ backgroundColor: detail.code }}
-                                                               htmlFor={detail.name}
-                                                               onClick={() => handleClickColor(detail._id)}>
-                                                            <input type='radio' name='color' id={detail.name}
-                                                                   defaultValue={detail._id} />
-                                                        </label>
-                                                    )) : ''}
-                                                    {/* <label className='c-1' htmlFor='sp-1'>
-                                                        <input type='radio' id='sp-1' />
-                                                    </label>
-                                                    <label className='c-2' htmlFor='sp-2'>
-                                                        <input type='radio' id='sp-2' />
-                                                    </label>
-                                                    <label className='c-3' htmlFor='sp-3'>
-                                                        <input type='radio' id='sp-3' />
-                                                    </label>
-                                                    <label className='c-4' htmlFor='sp-4'>
-                                                        <input type='radio' id='sp-4' />
-                                                    </label>
-                                                    <label className='c-9' htmlFor='sp-9'>
-                                                        <input type='radio' id='sp-9' />
-                                                    </label> */}
-                                                </div>
-
-                                            </div>
-                                            <p className='text-left'>{description}</p>
-                                            <div className='product__details__cart__option text-left'>
-                                                <button onClick={handleAddToCart} className='primary-btn mr-3'>add to
-                                                    cart
-                                                </button>
-                                                <div className='quantity'>
-                                                    <div className='pro-qty'>
-                                                        <input type='number'
-                                                               onChange={(e) => setQuantity(e.target.value)}
-                                                               value={quantity} />
+                                            <div className='product__details__text'>
+                                                <div className='d-flex justify-content-between'>
+                                                    <h3 className='text-left'>${salePrice == 0 ? exportPrice : salePrice}
+                                                        <span>${salePrice == 0 ? '' : exportPrice}</span></h3>
+                                                    <div className=' text-left'>
+                                                        <a className=' size-heart-icon' onClick={handleAddWishlist}><i
+                                                            className='fa fa-heart'></i> </a>
                                                     </div>
                                                 </div>
-                                            </div>
+                                                <div className='product__details__option  text-left'>
+                                                    <div className='product__details__option__size mb-3'>
+                                                        <span>Size:</span>
+                                                        {sizes ? sizes.map((detail) => (
+                                                            <label key={detail._id} htmlFor={detail.name}
+                                                                   className={sizeSelected == detail._id ? 'active' : ''}
+                                                                   onClick={() => handleClickSize(detail._id)}>{detail.name}
+                                                                <input type='radio' name='size' id={detail.name}
+                                                                       defaultValue={detail._id} />
+                                                            </label>
+                                                        )) : ''}
 
-                                            <div className='product__details__last__option'>
-                                                <h5><span>Guaranteed Safe Checkout</span></h5>
-                                                <img src='img/shop-details/details-payment.png' alt='' />
+                                                    </div>
+                                                    <div className='product__details__option__color'>
+                                                        <span>Color:</span>
+                                                        {colors ? colors.map((detail) => (
+                                                            <label key={detail._id} style={{ backgroundColor: detail.code }}
+                                                                   htmlFor={detail.name}
+                                                                   onClick={() => handleClickColor(detail._id)}>
+                                                                <input type='radio' name='color' id={detail.name}
+                                                                       defaultValue={detail._id} />
+                                                            </label>
+                                                        )) : ''}
 
+                                                    </div>
+
+                                                </div>
+                                                <p className='text-left'>{description}</p>
+                                                <div className='product__details__cart__option text-left'>
+                                                    <button onClick={handleAddToCart} className='primary-btn mr-3'>add to
+                                                        cart
+                                                    </button>
+                                                    <div className='quantity'>
+                                                        <div className='pro-qty'>
+                                                            <input type='number'
+                                                                   onChange={(e) => setQuantity(e.target.value)}
+                                                                   value={quantity} />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className='product__details__last__option'>
+                                                    <h5><span>Guaranteed Safe Checkout</span></h5>
+                                                    <img src='img/shop-details/details-payment.png' alt='' />
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

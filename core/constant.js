@@ -10,6 +10,7 @@ export const SALE_ORDER_STATUS = {
     CONFIRM: 'CONFIRM',
     DELIVERING: 'DELIVERING',
     COMPLETED: 'COMPLETED',
+    CANCELED: 'CANCELED',
     getNumber: (status) => {
         switch (status) {
             case 'PENDING':
@@ -20,6 +21,22 @@ export const SALE_ORDER_STATUS = {
                 return 2;
             case 'COMPLETED':
                 return 3;
+            case 'CANCELED':
+                return 4;
+        }
+    },
+    getByNumber: (number) => {
+        switch (number) {
+            case 0:
+                return 'PENDING';
+            case 1:
+                return 'CONFIRM';
+            case 2:
+                return 'DELIVERING';
+            case 3:
+                return 'COMPLETED';
+            case 4:
+                return 'CANCELED';
         }
     },
 };
