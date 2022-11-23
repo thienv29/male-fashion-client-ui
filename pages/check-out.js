@@ -22,6 +22,7 @@ export default function CheckOut() {
     const [total, setTotal] = useState(0);
     const [listDetails, setListDetails] = useState([]);
     const [code, setCode] = useState('');
+    const [codeVoucher, setCodeVoucher] = useState('');
 
     const dispatch = useDispatch();
     const router = useRouter();
@@ -167,6 +168,14 @@ export default function CheckOut() {
                                     </div>
                                 </div>
                                 <div className='col-lg-4 col-md-6'>
+                                    <div className='cart__discount'>
+                                        <h6 >Discount codes</h6>
+                                        <form action='#'>
+                                            <input type='text' placeholder='Coupon code' defaultValue='' value={codeVoucher}
+                                                   onChange={(e) => setCodeVoucher(e.target.value)} />
+                                            <button type='submit'>Apply</button>
+                                        </form>
+                                    </div>
                                     <div className='checkout__order'>
                                         <h4 className='order__title'>Your order</h4>
                                         <div className='checkout__order__products'>Product <span>Total</span></div>

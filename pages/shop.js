@@ -9,7 +9,6 @@ import { debounce } from 'lodash'
 
 export default function Shop() {
     const [categories, setCategories] = useState([]);
-    const [sizes, setSizes] = useState([]);
     const [suppliers, setSuppliers] = useState([]);
     const [productsPagination, setProductsPagination] = useState([]);
     const [filterTextTmp, setFilterTextTmp] = useState('');
@@ -29,7 +28,6 @@ export default function Shop() {
 
     useEffect(() => {
         getCategories();
-        getSizes();
         getBrands();
         getProductByFilter();
 
@@ -46,10 +44,6 @@ export default function Shop() {
     const getBrands = async () => {
         const data = await SupplierService.getAll();
         setSuppliers(data.result);
-    };
-    const getSizes = async () => {
-        const data = await SizeService.getAll();
-        setSizes(data.result);
     };
     const getProductByFilter = async () => {
         const filter = {
@@ -70,7 +64,6 @@ export default function Shop() {
             setMaxPage(Math.floor((data.result.totalItem / data.result.limit)) + 1);
         }
         setTotalItem(data.result.totalItem)
-        // setMaxPage(Math.floor((data.result.totalItem / limit)) + 1);
     };
 
     const handleSetFilterText = (evt) => {
@@ -97,15 +90,6 @@ export default function Shop() {
             setFilterSupplier(id);
         }
     };
-
-    const handleSetSizeFilter = (id) => {
-        if (id === filterSize) {
-            setFilterSize('');
-        } else {
-            setFilterSize(id);
-        }
-    };
-
     const startItem = (curPage * 9) - 9 + 1;
 
     return (
@@ -211,28 +195,7 @@ export default function Shop() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            {/*<div className='card'>*/}
-                                            {/*    <div className='card-heading'>*/}
-                                            {/*        <a data-toggle='collapse' data-target='#collapseFour'>Size</a>*/}
-                                            {/*    </div>*/}
-                                            {/*    <div id='collapseFour' className='collapse show'*/}
-                                            {/*         data-parent='#accordionExample'>*/}
-                                            {/*        <div className='card-body'>*/}
-                                            {/*            <div className='shop__sidebar__size'>*/}
 
-                                            {/*                {sizes.map((item, index) => {*/}
-                                            {/*                    return <label key={index}*/}
-                                            {/*                                  htmlFor={item.name}*/}
-                                            {/*                                  className={filterSize == item._id ? 'active' : ''}*/}
-                                            {/*                                  onClick={() => handleSetSizeFilter(item._id)}*/}
-                                            {/*                                  id={item.name}>{item.name}*/}
-                                            {/*                        <input type='radio' />*/}
-                                            {/*                    </label>;*/}
-                                            {/*                })}*/}
-                                            {/*            </div>*/}
-                                            {/*        </div>*/}
-                                            {/*    </div>*/}
-                                            {/*</div>*/}
 
                                         </div>
                                     </div>

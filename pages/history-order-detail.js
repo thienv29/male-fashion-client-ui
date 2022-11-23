@@ -256,9 +256,9 @@ export default function HistoryOrderDetail({ saleOrderFull, total }) {
                                             </div>
                                         </div>
                                         {saleOrderFull.status == SALE_ORDER_STATUS.PENDING ?
-                                            <button className={'btn-danger mt-2 w-100'} onClick={handleCancelOrder}>Cancel order</button> : ''}
+                                            <button className={'danger-btn w-100'} onClick={handleCancelOrder}>Cancel order</button> : ''}
                                         {saleOrderFull.status == SALE_ORDER_STATUS.DELIVERING ?
-                                            <button className={'primary-btn mt-2 w-100'} onClick={handleCompleteOrder}>Received the
+                                            <button className={'primary-btn w-100'} onClick={handleCompleteOrder}>Received the
                                                 goods</button> : ''}
                                     </div>
                                 </div>

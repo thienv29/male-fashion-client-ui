@@ -167,6 +167,27 @@ ol {
     background: #000000;
     letter-spacing: 4px;
 }
+.primary-btn:hover {
+    background-color: white;
+    color: black;
+    transition: all 0.3s;
+}
+
+.danger-btn {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 14px 30px;
+    color: #ffffff;
+    background: #e63334;
+    letter-spacing: 4px;
+}
+.danger-btn:hover {
+    background-color: white;
+    color: red;
+    transition: all 0.3s;
+}
 
 .site-btn {
     font-size: 14px;
@@ -3956,11 +3977,7 @@ a:active {
     background: gray;
 }
 
-.primary-btn:hover {
-    background-color: white;
-    color: black;
-    transition: all 0.3s;
-}
+
 
 .flex-center {
     display: flex;
