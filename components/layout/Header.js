@@ -45,7 +45,7 @@ export default function Header() {
                             <div className='header__top__right'>
                                 <div className='header__top__links' style={{ marginRight: '4px' }}>
                                     {clientUser.id != '' ? <div className='header__navbar-item header__navbar-user'>
-                                        <img src='img/shopping-cart/cart-1.jpg' alt=''
+                                        <img src={clientUser.avatar} alt=''
                                              className='header__navbar-user-img'
                                              style={visibles ? { display: 'none' } : {}} />
                                         <span className='header__navbar-user-name'>{clientUser.firstName}</span>
