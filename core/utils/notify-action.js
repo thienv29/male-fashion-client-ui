@@ -10,6 +10,10 @@ const notifySuccessMessage = (message) => {
     toast.success(message,{autoClose: 2000} );
 };
 
+const notifyWarningMessage = (message) => {
+    toast.warning(message,{autoClose: 2000} );
+}
 
 
-export { notifyErrorSystem, notifyErrorMessage, notifySuccessMessage };
+
+export { notifyErrorSystem, notifyErrorMessage, notifySuccessMessage, notifyWarningMessage };

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     theme: 'light',
-    title: 'sxs',
+    title: 'male-fashion',
 };
 
 export const AppUiSlice = createSlice({

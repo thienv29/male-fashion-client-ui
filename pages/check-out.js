@@ -7,7 +7,7 @@ import randomString from '../core/utils/random-string.js';
 import SaleOrderService from '../services/saleOrder.service';
 import { resetCart } from '../store/feature/UserSlice';
 import { useRouter } from 'next/router';
-import { notifyErrorMessage } from '../core/utils/notify-action';
+import { notifyErrorMessage, notifyWarningMessage } from '../core/utils/notify-action';
 
 export default function CheckOut() {
     const user = useSelector((state) => state.user);
@@ -170,10 +170,13 @@ export default function CheckOut() {
                                 <div className='col-lg-4 col-md-6'>
                                     <div className='cart__discount'>
                                         <h6 >Discount codes</h6>
-                                        <form action='#'>
+                                        <form action=''>
                                             <input type='text' placeholder='Coupon code' defaultValue='' value={codeVoucher}
-                                                   onChange={(e) => setCodeVoucher(e.target.value)} />
-                                            <button type='submit'>Apply</button>
+                                                   onChange={(e) => setCodeVoucher(e.target.value)}  disabled/>
+                                            <button type='none' onClick={() =>{
+                                                event.preventDefault();
+                                                notifyWarningMessage("Chức năng đang phát triển")
+                                            }}>Apply</button>
                                         </form>
                                     </div>
                                     <div className='checkout__order'>
@@ -192,20 +195,27 @@ export default function CheckOut() {
                                             <li>Total <span>${total}</span></li>
                                         </ul>
                                         {description === '' ? '' : <div style={{ display: 'flex' }}>
-                                            <p><strong>Nội dung chuyển khoản: <br /> </strong>{description} </p>
-                                            <button style={{
-                                                marginLeft: '20px',
-                                                marginTop: '5px',
-                                                border: 'none',
-                                                outline: 'none',
-                                            }}
-                                                    onClick={(evt) => {
-                                                        evt.preventDefault();
-                                                        navigator.clipboard.writeText(description);
-                                                    }}>
-                                                <img src='img/icon/copytoclipboard.png' width={20}
-                                                     alt='copytoclipboard' />
-                                            </button>
+                                            <div style={{display: "flex", flexDirection: "column", width: "100%"}}>
+                                                <p><strong>Số tài khoản: </strong> 0123456789</p>
+                                                <p><strong>Ngân hàng: </strong> AGRIBANK</p>
+                                                <p><strong>Tên chủ tài khoản:   </strong> Vũ Quý Thiện</p>
+                                                <div style={{display: "flex"}}>
+                                                    <p><strong>Nội dung chuyển khoản: <br /> </strong>{description} </p>
+                                                    <button style={{
+                                                        marginLeft: '20px',
+                                                        marginTop: '5px',
+                                                        border: 'none',
+                                                        outline: 'none',
+                                                    }}
+                                                            onClick={(evt) => {
+                                                                evt.preventDefault();
+                                                                navigator.clipboard.writeText(description);
+                                                            }}>
+                                                        <img src='img/icon/copytoclipboard.png' width={20}
+                                                            alt='copytoclipboard' />
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>}
 
                                         <div className=''>
